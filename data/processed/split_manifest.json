@@ -1,0 +1,17 @@
+{
+  "random_seed": 42,
+  "val_ratio": 0.15,
+  "train_sources": 1,
+  "val_sources": 1,
+  "test_sources": 1,
+  "train_claims_total": 1,
+  "train_claims_hallucinated": 0,
+  "val_claims_total": 1,
+  "val_claims_hallucinated": 1,
+  "test_claims_total": 1,
+  "test_claims_hallucinated": 0,
+  "test_hallucination_prevalence_pct": 0.0,
+  "source_overlap_train_val": 0,
+  "source_overlap_train_test": 0,
+  "source_overlap_val_test": 0
+}

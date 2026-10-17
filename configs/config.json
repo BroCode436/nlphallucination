@@ -1,0 +1,53 @@
+{
+  "project_name": "Adaptive Evidence-Guided Hallucination Detection and Correction",
+  "dataset": "RAGTruth",
+  "random_seed": 42,
+  "paths": {
+    "raw_data_dir": "data/raw",
+    "processed_data_dir": "data/processed",
+    "checkpoints_dir": "results/checkpoints",
+    "tables_dir": "results/tables",
+    "figures_dir": "results/figures",
+    "predictions_dir": "results/predictions"
+  },
+  "baseline_model": {
+    "type": "TfidfVectorizer + LogisticRegression",
+    "max_features": 10000,
+    "ngram_range": [1, 2],
+    "C": 10.0,
+    "max_iter": 300
+  },
+  "transformer_model": {
+    "architecture": "distilbert-base-uncased",
+    "task": "binary_cross_encoder",
+    "max_length": 128,
+    "batch_size": 32,
+    "learning_rate": 2e-5,
+    "weight_decay": 0.01,
+    "epochs": 2
+  },
+  "verification_policy": {
+    "high_confidence_threshold": 0.80,
+    "low_confidence_threshold": 0.40,
+    "agreement_threshold": 0.25,
+    "evidence_quality_thresholds": {
+      "strong": 0.55,
+      "weak": 0.25
+    }
+  },
+  "evaluation": {
+    "balanced_sample_size": 1000,
+    "natural_test_evaluation": true,
+    "metrics": [
+      "accuracy",
+      "precision",
+      "recall",
+      "f1",
+      "mean_latency_ms",
+      "median_latency_ms",
+      "p95_latency_ms",
+      "verification_calls",
+      "coverage_pct"
+    ]
+  }
+}

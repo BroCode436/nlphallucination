@@ -1,0 +1,2 @@
+Total Evaluated Claims,Targeted Hallucinations (N_hal),Targeted Factual Claims (N_fac),Correction Success Rate (CSR %),Residual Hallucination Rate (RHR %),Correction-Induced Hallucination Rate (CIHR %),Correct Content Preservation Rate (CCPR %),Unnecessary Edit Rate (UER %),Abstention Rate (AR %),Verification Acceptance Rate (VAR %)
+400,208,192,37.98,62.02,0.0,87.5,12.5,14.75,99.04

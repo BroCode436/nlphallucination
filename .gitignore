@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Caches and environments
+.ipynb_checkpoints/
+.env
+.venv
+env/
+venv/
+*.tmp
+tmp/
+scratch/
+
+# Large model weights (>100 MB exceeds GitHub limit)
+# Note: Model weights can be reproduced via `py -3.12 run_pipeline.py --train`
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+
+# Large processed data files exceeding GitHub's 100MB file size limit
+# Note: Cleaned datasets can be regenerated via `py -3.12 run_pipeline.py --preprocess`
+data/processed/*.csv
+!data/processed/split_manifest.json
+notebooks/data/
+notebooks/results/
+
+# OS and IDE metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

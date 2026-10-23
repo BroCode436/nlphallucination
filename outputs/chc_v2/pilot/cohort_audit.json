@@ -1,0 +1,6 @@
+{
+  "raw_recorded_episodes": 97,
+  "primary_episodes": 90,
+  "eligibility_rule": "Clean atomic-prefix support and pre-outcome selected-corruption validity; no filtering on gains",
+  "invalid_or_uncertain_records_retained_in": "episodes_atomic_scored.jsonl"
+}

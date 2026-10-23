@@ -1,0 +1,17 @@
+[
+  {
+    "file": "src/correction_validity.py",
+    "specific_contracts_added": 11,
+    "executable_ast_identical": true
+  },
+  {
+    "file": "src/correction.py",
+    "specific_contracts_added": 7,
+    "executable_ast_identical": true
+  },
+  {
+    "file": "src/train.py",
+    "specific_contracts_added": 9,
+    "executable_ast_identical": true
+  }
+]

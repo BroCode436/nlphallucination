@@ -1,0 +1,1337 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 894
+  },
+  {
+    "path": "analyze_claim.py",
+    "bytes": 5290,
+    "sha256": "981398ea310722632882d6bbce8eb0405dcf98fff6d1d57ec64cba2ed8219451",
+    "lines": 101,
+    "definitions": [
+      "inspect_claim",
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "app.py",
+    "bytes": 11626,
+    "sha256": "9c66462220d187f07c876a63eacc3b44ff7f9fd52135dbaa72e44a8f0abe64ed",
+    "lines": 156,
+    "definitions": [
+      "verify_payload",
+      "main",
+      "Handler",
+      "do_GET",
+      "do_POST"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "audit_dataset.py",
+    "bytes": 4471,
+    "sha256": "272c81027d1caf39d1f93e2c318ccfc7f3d1ed97ad8a8497654667bc9e47bc1e",
+    "lines": 91,
+    "definitions": [
+      "audit_splits",
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "AUDIT_REPORT.md",
+    "bytes": 9023,
+    "sha256": "ed6cc9d084a1f1a50db13677e813562d5310eb4ad67d1d78f48ab1f5d9e3440a",
+    "lines": 95
+  },
+  {
+    "path": "build_updated_mse2_notebook.py",
+    "bytes": 26549,
+    "sha256": "1911b2ed78c626fef71a434f06c88fabf3af8023fa678746f73fdb3aa3cc5f43",
+    "lines": 432,
+    "definitions": [
+      "img_to_base64",
+      "make_md_cell",
+      "make_code_cell",
+      "build_notebook"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "evaluate_challenges.py",
+    "bytes": 4991,
+    "sha256": "c40c29c2d31daef30fcc29a735ec5415f006efff6456388cff6a2f36da57f14e",
+    "lines": 55,
+    "definitions": [
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "PHASE1_VERIFICATION_REPORT.md",
+    "bytes": 12814,
+    "sha256": "59b1be44ca518548edf5006e04a75ac3de44057fabf6541247a439a2bd8fc21f",
+    "lines": 190
+  },
+  {
+    "path": "ragtruth_mse1.py",
+    "bytes": 12213,
+    "sha256": "4062062dcab099cd69afb428a7778b9ea2b15c30f70f2c468fcfc2c6d81bfd36",
+    "lines": 280,
+    "definitions": [
+      "load_and_inspect_ragtruth",
+      "preprocess_data",
+      "run_eda",
+      "explain_models"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "README.md",
+    "bytes": 6060,
+    "sha256": "08cdb5253d885986a61f52117a36cf5d6b462f8a2b0387d0c43de0ee5fc92b34",
+    "lines": 82
+  },
+  {
+    "path": "requirements.txt",
+    "bytes": 153,
+    "sha256": "bc7de4a8e5fcd2f266220ae20500c1eef91dd8ba5cc50b05fcad21346eedc756",
+    "lines": 9
+  },
+  {
+    "path": "RESULTS_SUMMARY.md",
+    "bytes": 8794,
+    "sha256": "afc4765118665ae00e8b5c9593ac64d837f510ccf0d0d2a62349e56bf40febdf",
+    "lines": 118
+  },
+  {
+    "path": "review_corrections.py",
+    "bytes": 5103,
+    "sha256": "1a4fb82610e8475e3391bdeadcbadf30a36707113958b6a668eb98acd82a1664",
+    "lines": 96,
+    "definitions": [
+      "score_reviews",
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "run_pipeline.py",
+    "bytes": 9706,
+    "sha256": "7891965afe2ffd26ec66f68c4bb5b491d0d3aca13628bf28262a159d4caa0665",
+    "lines": 223,
+    "definitions": [
+      "run_unit_tests",
+      "run_preprocessing",
+      "run_training",
+      "run_evaluation",
+      "check_prerequisites_exist",
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "test_integration.py",
+    "bytes": 4545,
+    "sha256": "a388edee75af51cb8774c96dc4a204c4d1479f6bb2d22f71d05bfa0410499565",
+    "lines": 84,
+    "definitions": [
+      "IntegrationTests",
+      "test_primary_rejection_cannot_be_averaged_away",
+      "test_supported_wrong_entity_is_rejected",
+      "test_model_is_loaded_by_default"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "test_model.py",
+    "bytes": 10808,
+    "sha256": "6d4f8280b4a0e3e6c833bb6fa6edd6979e06ec04072a887d0e59426b6fab3d18",
+    "lines": 193,
+    "definitions": [
+      "ModelTests",
+      "setUpClass",
+      "test_original_swap",
+      "test_deletion_rejected_and_rollback",
+      "test_signed_decimal_and_unicode",
+      "test_missing_inputs",
+      "test_negation_evidence",
+      "test_relation_roles_require_review",
+      "test_no_forced_edit",
+      "test_numeric_repair",
+      "test_source_validation",
+      "test_source_provenance"
+    ],
+    "missing_docstrings": [
+      "setUpClass"
+    ]
+  },
+  {
+    "path": "train_model.py",
+    "bytes": 14195,
+    "sha256": "ee0a2775023fd71d267657f97ec61e8c6db1a1742e5884a8ec6a05d531afefbf",
+    "lines": 225,
+    "definitions": [
+      "generate",
+      "metrics",
+      "main",
+      "batch_assess",
+      "render"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "verify_correction.py",
+    "bytes": 1459,
+    "sha256": "643881a52718f152aa221c791e27b169cb0753a10f490ffc4ec114c39a81b30c",
+    "lines": 30,
+    "definitions": [
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\cli.py",
+    "bytes": 6591,
+    "sha256": "37b2a5aafb59c963a5250fd0dffdc2ce3a81f096b20b07c57d4212d18065aac2",
+    "lines": 109,
+    "definitions": [
+      "main"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\data.py",
+    "bytes": 9106,
+    "sha256": "2a2148d482e4502452c99f967d41ffbe5e23553a8ceda27580c7874046bbeafe",
+    "lines": 197,
+    "definitions": [
+      "read_jsonl",
+      "write_jsonl",
+      "fetch_hotpot",
+      "supporting_sentences",
+      "split_questions",
+      "audit_splits",
+      "load_ragtruth"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\detector.py",
+    "bytes": 8038,
+    "sha256": "c670c9c63af850b1aec4319d58d65ed3f454894a7578d93f37942f2ffb489ba0",
+    "lines": 156,
+    "definitions": [
+      "ExistingDetector",
+      "__init__",
+      "predict_pairs",
+      "predict_hallucination",
+      "annotate",
+      "verify"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\experiment.py",
+    "bytes": 19985,
+    "sha256": "e8c63b50b49c8ef26cad9aa65c819984e8c4b1c802d34240d98275930a6f3b95",
+    "lines": 331,
+    "definitions": [
+      "apply_actions",
+      "outcome",
+      "collect_episodes",
+      "validate_episodes",
+      "train_policies",
+      "evaluate_policies",
+      "evaluate_detector"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\generation.py",
+    "bytes": 6595,
+    "sha256": "f254a7c734c8e38edb06b9f4ced1e89017f885fc12209f754ce1a26d1d2f216b",
+    "lines": 122,
+    "definitions": [
+      "SmallReasoner",
+      "__init__",
+      "prompt",
+      "generate"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\graph.py",
+    "bytes": 5999,
+    "sha256": "47e26fd41900f10ca4911efbf71977bcc522eccf896c0e79c9c7bc22db91e66f",
+    "lines": 115,
+    "definitions": [
+      "build_state",
+      "validate_graph",
+      "node_features"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\injection.py",
+    "bytes": 4817,
+    "sha256": "262f29a957e6250de2d85a902936022da1cf358f47b58ce3370e7765498c8e08",
+    "lines": 84,
+    "definitions": [
+      "candidates",
+      "select_conditions"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\metrics.py",
+    "bytes": 5024,
+    "sha256": "49262d62d0c86f7533273bdaf2acee6ae0ced6b380be0d737e04866a53c2601a",
+    "lines": 97,
+    "definitions": [
+      "normalize_answer",
+      "exact_match",
+      "prediction_metrics",
+      "summarize_policies"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\models.py",
+    "bytes": 15839,
+    "sha256": "8f701b469d902a3422dad0f436da8fcafd7dba08052cee20ec42b706906f50df",
+    "lines": 308,
+    "definitions": [
+      "BenefitGNN",
+      "training_graph",
+      "fit_tabular",
+      "pack_graphs",
+      "fit_gnn",
+      "GraphPolicy",
+      "__init__",
+      "forward",
+      "flatten",
+      "__init__",
+      "scores"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\plots.py",
+    "bytes": 6929,
+    "sha256": "27881a0156e4f876c49c0e6f1f5981263dfeecc6f4f9a74e6aedf05579ca022f",
+    "lines": 107,
+    "definitions": [
+      "save_figure",
+      "make_plots"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\policy.py",
+    "bytes": 5457,
+    "sha256": "edf30403f596ac7fb48f7871e51d356826f439f2a09a1684257a0682ce11cc91",
+    "lines": 132,
+    "definitions": [
+      "select_claims",
+      "baseline_scores",
+      "TabularPolicy",
+      "__init__",
+      "scores",
+      "priority"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\resources.py",
+    "bytes": 2941,
+    "sha256": "b57e8a49383aa8cd8c9c2e6ebdbcdb946b54d18a648a6d7d1d42a652c7db78aa",
+    "lines": 77,
+    "definitions": [
+      "seed_everything",
+      "hardware_report",
+      "choose_device"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\schema.py",
+    "bytes": 4164,
+    "sha256": "80e32b78c60c393b965ea95cc9c76d3da6486f577462587f2ab0f04544b6f730",
+    "lines": 107,
+    "definitions": [
+      "Claim",
+      "DecisionState",
+      "Budget",
+      "to_dict",
+      "from_dict",
+      "__post_init__"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\web.py",
+    "bytes": 14986,
+    "sha256": "6a50a0a67d41cc117f2ce1d862c9b87ca6a9f03661f2e9c70478ceaf91a23201",
+    "lines": 205,
+    "definitions": [
+      "CHCService",
+      "serve",
+      "__init__",
+      "retrieve",
+      "analyze",
+      "Handler",
+      "score",
+      "do_GET",
+      "do_POST"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "chc\\__init__.py",
+    "bytes": 659,
+    "sha256": "004479d71c7906e76a46c461643de67608661ffba4da91813a5746aae679944a",
+    "lines": 16,
+    "definitions": [],
+    "missing_docstrings": []
+  },
+  {
+    "path": "configs\\chc.json",
+    "bytes": 660,
+    "sha256": "d3f3ccaec807269149f0022e0ccb26503dcf11a6fdd4e22852515dfebd22ccaa",
+    "lines": 18
+  },
+  {
+    "path": "configs\\config.json",
+    "bytes": 1374,
+    "sha256": "48328d59ce81287d7e23bd8ff6062e1e5b408b9a0ef3ed367bd8baf548346369",
+    "lines": 53
+  },
+  {
+    "path": "docs\\CORRECTION_MODEL_REPORT.md",
+    "bytes": 11218,
+    "sha256": "5f99d8797c08436d3a6424c515dc1bf1ff10af321368fe0e91763a0dba0c4762",
+    "lines": 111
+  },
+  {
+    "path": "docs\\IMPLEMENTATION_PLAN.md",
+    "bytes": 5970,
+    "sha256": "7da95deff0d9db2765d1b064b7c84b15c3150a07fbe7b96d41d5219a9f01b2a0",
+    "lines": 37
+  },
+  {
+    "path": "docs\\IMPROVEMENTS_REPORT.md",
+    "bytes": 14687,
+    "sha256": "95aeb23e2b11383687cd20d9b65b26dd19530e16b158796d411252a39e8411fc",
+    "lines": 200
+  },
+  {
+    "path": "models\\correction_validity.joblib",
+    "bytes": 92683
+  },
+  {
+    "path": "notebooks\\ragtruth_mse1.ipynb",
+    "bytes": 163908,
+    "sha256": "fc38cbc885bbd7b481ed39ef1ed17a120c8c684256b4db748c5398a54fa1bc23",
+    "lines": 520
+  },
+  {
+    "path": "notebooks\\ragtruth_mse2.ipynb",
+    "bytes": 704916,
+    "sha256": "5a9dcdfd7f269d70c383a59c40b0120cbf9baab8f8f5d04fa2468dc2901973da",
+    "lines": 545
+  },
+  {
+    "path": "paper\\ieee_research_paper.md",
+    "bytes": 28440,
+    "sha256": "2dc831994014dcce419c75c07beee56106f1526f2b5bb39caa18f52f91d2e8b5",
+    "lines": 364
+  },
+  {
+    "path": "scripts\\verify_integrity.py",
+    "bytes": 1759,
+    "sha256": "6aed8197f0a2d96b7621d1a079becc269570af0b3ba778c0f914694f284004a3",
+    "lines": 43,
+    "definitions": [],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\correction.py",
+    "bytes": 21868,
+    "sha256": "8a365551972b0a664f821fd87f43d625fefc20cc580dc40abf703349a4d13c95",
+    "lines": 442,
+    "definitions": [
+      "EvidenceGuidedCorrector",
+      "evaluate_correction_pipeline",
+      "__init__",
+      "extract_salient_evidence_sentence",
+      "align_numerical_entities",
+      "correct_claim",
+      "correct_and_reverify"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\correction_validity.py",
+    "bytes": 18659,
+    "sha256": "2778f31adb69b6ce9f9d611f857e1b1a1d6de486cafe71eaa8dd86fb8fd53337",
+    "lines": 339,
+    "definitions": [
+      "tokens",
+      "_cached_tokens",
+      "words",
+      "numbers",
+      "_cached_numbers",
+      "clauses",
+      "recall",
+      "same_clause_order",
+      "features",
+      "CorrectionValidityModel",
+      "__init__",
+      "assess",
+      "propose"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\evaluate.py",
+    "bytes": 48417,
+    "sha256": "3f06ef4b604ea5f90028f878d1556cd44e087691ead83b3a5772650ccc60d0e3",
+    "lines": 1000,
+    "definitions": [
+      "load_eval_resources",
+      "run_model_benchmark",
+      "run_hallucination_type_analysis",
+      "run_evidence_quality_experiment",
+      "run_fixed_vs_adaptive_benchmark",
+      "run_correction_evaluation",
+      "run_unseen_question_experiment",
+      "run_ablation_study",
+      "generate_master_comparison_table",
+      "run_full_evaluation",
+      "compute_ablation_row",
+      "variant"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\grounding.py",
+    "bytes": 5269,
+    "sha256": "f1407b413fa8516e43f0666568602725967d5fa3f36c05fda54b55f291df26c6",
+    "lines": 98,
+    "definitions": [
+      "clean_text",
+      "content_tokens",
+      "numerical_conflicts"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\preprocessing.py",
+    "bytes": 16834,
+    "sha256": "1b8bbba3b391dcfb06d781c6a587f07f40704bb954b79ac7a21706dc4c46f08e",
+    "lines": 345,
+    "definitions": [
+      "extract_evidence",
+      "split_sentences_with_spans",
+      "load_raw_ragtruth",
+      "create_leak_free_splits",
+      "run_pipeline"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\reliability.py",
+    "bytes": 5017,
+    "sha256": "457c8864b5c4e371c7d6d58b516aa954324a9660726af17330726d65c72e4aee",
+    "lines": 85,
+    "definitions": [
+      "probability_metrics",
+      "source_bootstrap_f1"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\settings.py",
+    "bytes": 2320,
+    "sha256": "e46de3e4c98f006d28449a7aaee89f8d49ab24420ee599cf59ba6b33a9f1a7e5",
+    "lines": 62,
+    "definitions": [
+      "load_config",
+      "seed_everything"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\train.py",
+    "bytes": 24055,
+    "sha256": "03ebda567cb8c7d733aa7fecba1c241e6657bae59dac1a918b1cfc7cfb232501",
+    "lines": 514,
+    "definitions": [
+      "ClaimDataset",
+      "load_claim_data",
+      "tune_baseline",
+      "evaluate_transformer",
+      "tune_transformer",
+      "run_training_pipeline",
+      "__init__",
+      "__len__",
+      "__getitem__"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "src\\verification.py",
+    "bytes": 29698,
+    "sha256": "7b23115f690b6578a2ff0ee3fd384a58b7000ee2425b078b256ced6ac2976e77",
+    "lines": 576,
+    "definitions": [
+      "compute_evidence_quality",
+      "VerificationEngine",
+      "run_no_verification",
+      "run_fixed_verification",
+      "run_adaptive_verification",
+      "compare_verification_policies",
+      "__init__",
+      "predict_primary",
+      "verify_check_1",
+      "verify_check_2",
+      "verify_check_3",
+      "adaptive_verify"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "tests\\test_correction.py",
+    "bytes": 12636,
+    "sha256": "238a1478faf9ea15b980f834320a73247cd62a1b2ebf42bcc4e8dd931b4350c6",
+    "lines": 238,
+    "definitions": [
+      "TestCorrection",
+      "setUp",
+      "test_numerical_contradiction_correction",
+      "test_abstention_on_empty_evidence",
+      "test_preservation_of_factual_claims",
+      "test_correction_metrics_computation",
+      "test_context_aligned_numerical_correction_with_multiple_evidence_numbers",
+      "test_ambiguous_numerical_correction_abstains",
+      "test_omitted_prediction_without_engine_raises_keyerror",
+      "test_gold_label_cannot_control_correction_decision"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "tests\\test_evaluation.py",
+    "bytes": 8714,
+    "sha256": "3372a7323b8e8cb8fb50e3f93578d24782f63aba4e4fb466b5ea2ab21ac1e269",
+    "lines": 189,
+    "definitions": [
+      "TestEvaluationIntegrity",
+      "test_confusion_matrix_subset_alignment",
+      "test_non_conversion_of_none_prediction",
+      "test_hand_calculated_metric_toy_example",
+      "test_checkpoint_validation_detects_missing_weights"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "tests\\test_improvements.py",
+    "bytes": 17248,
+    "sha256": "8492241965ea4ff71cabca188e86eadc8b9fc4c151f63b3c1108f731688023ac",
+    "lines": 316,
+    "definitions": [
+      "ImprovementTests",
+      "test_missing_values_abstain",
+      "test_whole_token_coverage",
+      "test_number_from_wrong_entity_does_not_support_claim",
+      "test_equivalent_number_formats",
+      "test_ambiguous_number_is_not_definite_conflict",
+      "test_numeric_claim_cannot_bypass_rule",
+      "test_rejected_proposal_preserves_original",
+      "test_all_repeated_numbers_repaired",
+      "test_calibration_and_cluster_intervals",
+      "test_incomplete_review_cannot_produce_safety_metric",
+      "test_independent_review_metrics",
+      "test_ablation_call_counts_and_common_subset_metrics",
+      "test_duplicate_evidence_detected_under_different_source_ids",
+      "test_configured_threshold_changes_route"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "tests\\test_pipeline.py",
+    "bytes": 3671,
+    "sha256": "5a569e87d0597a88077045a5f2ed0b4523918008de5b4c846dd62c34a576afde",
+    "lines": 73,
+    "definitions": [
+      "TestIntegrationPipeline",
+      "test_end_to_end_mini_batch_flow"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "tests\\test_preprocessing.py",
+    "bytes": 13476,
+    "sha256": "bb4f4c8d14630da830ebaf37b80d1ed1b30a0dd65ae1da555f16e0ed87a0aba0",
+    "lines": 257,
+    "definitions": [
+      "TestPreprocessing",
+      "test_sentence_splitting_and_spans",
+      "test_source_id_leakage_assertion",
+      "test_empty_string_handling",
+      "test_tiny_split_sizes_creates_non_empty_val",
+      "test_single_source_handling",
+      "test_split_generation_does_not_overwrite_production_manifest",
+      "test_deterministic_splits",
+      "test_isolated_manifest_saving_in_temp_directory"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "tests\\test_verification.py",
+    "bytes": 13187,
+    "sha256": "0066ce3df9fe65c42ba19df087073b71499ea4afe50f7d718ca7d58aa6a1ac08",
+    "lines": 248,
+    "definitions": [
+      "TestVerification",
+      "setUp",
+      "test_evidence_quality_categories",
+      "test_missing_evidence_explicit_abstention",
+      "test_numerical_conflict_detection",
+      "test_wall_clock_latency_is_non_negative_and_real",
+      "test_conflicting_verifiers_trigger_deep_verification_and_abstention",
+      "MockConflictingEngine",
+      "verify_check_1",
+      "verify_check_2",
+      "verify_check_3"
+    ],
+    "missing_docstrings": []
+  },
+  {
+    "path": "data\\processed\\ragtruth_claims_test.csv",
+    "bytes": 49793582
+  },
+  {
+    "path": "data\\processed\\ragtruth_claims_train.csv",
+    "bytes": 247811021
+  },
+  {
+    "path": "data\\processed\\ragtruth_claims_val.csv",
+    "bytes": 43220959
+  },
+  {
+    "path": "data\\processed\\ragtruth_responses_clean.csv",
+    "bytes": 108271197
+  },
+  {
+    "path": "data\\processed\\split_manifest.json",
+    "bytes": 473,
+    "sha256": "cab35de75742f66da668bc610480d426cb2ffc74714517bb9f49d20404a50f4a",
+    "lines": 17
+  },
+  {
+    "path": "data\\processed\\split_manifest.json.bak",
+    "bytes": 443
+  },
+  {
+    "path": "data\\raw\\response.jsonl",
+    "bytes": 21476525
+  },
+  {
+    "path": "data\\raw\\source_info.jsonl",
+    "bytes": 15120936
+  },
+  {
+    "path": "outputs\\chc\\hotpot\\hotpot_train_500.jsonl",
+    "bytes": 3255050
+  },
+  {
+    "path": "outputs\\chc\\hotpot\\hotpot_validation_500.jsonl",
+    "bytes": 3332630
+  },
+  {
+    "path": "outputs\\chc\\hotpot\\hotpot_validation_510.jsonl",
+    "bytes": 3398203
+  },
+  {
+    "path": "outputs\\chc\\smoke\\all_policy_predictions.csv",
+    "bytes": 1692498
+  },
+  {
+    "path": "outputs\\chc\\smoke\\all_policy_summaries.csv",
+    "bytes": 21155
+  },
+  {
+    "path": "outputs\\chc\\smoke\\config.json",
+    "bytes": 1004,
+    "sha256": "877f64920ab54cc3ad876c93bda0d7261f8ebdceaebaf73c9b2841b7f066d365",
+    "lines": 44
+  },
+  {
+    "path": "outputs\\chc\\smoke\\episodes.jsonl",
+    "bytes": 14346555
+  },
+  {
+    "path": "outputs\\chc\\smoke\\episode_audit.json",
+    "bytes": 239,
+    "sha256": "62ba8e5bc3c8688c5780dd910936340513229d56c370e0b55eb74a3bb5ea6ce3",
+    "lines": 11
+  },
+  {
+    "path": "outputs\\chc\\smoke\\injection_review_candidates.jsonl",
+    "bytes": 185125
+  },
+  {
+    "path": "outputs\\chc\\smoke\\run_manifest.json",
+    "bytes": 1177,
+    "sha256": "32dcaaf62c845122556ac431d5814965accbfd21ec63da5aeedfde5874d14185",
+    "lines": 44
+  },
+  {
+    "path": "outputs\\chc\\smoke\\skipped_questions.jsonl",
+    "bytes": 0
+  },
+  {
+    "path": "outputs\\chc\\smoke\\split_audit.json",
+    "bytes": 524,
+    "sha256": "93502bc8cddffbdc6140e595c4f070f34a2235a1d79e171d06eca4a1f26efe35",
+    "lines": 23
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\generations\\6a5a5d3d2080916fd1724ad935b57cf85ec3aa17a6db0cdbe32f392411b6de3e.json",
+    "bytes": 390,
+    "sha256": "00576fedf9c57bd496fcfbe01ab832bc47284d58891c2a322b169216a4bfc8f2",
+    "lines": 15
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\CACHEDIR.TAG",
+    "bytes": 195
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\2c19eb6e3b583f52d34b903b5978d3d30b6b7682",
+    "bytes": 2201
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\360a0073f29a105ced4a366cda27e668b11bb73b",
+    "bytes": 1401
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+    "bytes": 307867048
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\d52815623b46b7db1c4b957b5a83a8ad30b0146a",
+    "bytes": 147
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86",
+    "bytes": 791656
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\db13bf98b7714acc4dea7621ff7f4ab93f64258e",
+    "bytes": 2539
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\blobs\\fc669fbad1a6a82119ca3e1fa75db33ee22ca47d",
+    "bytes": 2424064
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\refs\\main",
+    "bytes": 40
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\.no_exist\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\added_tokens.json",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lines": 0
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\.no_exist\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\chat_template.jinja",
+    "bytes": 0
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\config.json",
+    "bytes": 1401,
+    "sha256": "439aa0fecf5a5546a1def68b1fc45e538e2c94528ce805378daf091e2bf6e4de",
+    "lines": 57
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\generation_config.json",
+    "bytes": 147,
+    "sha256": "f5a1c7e2be8092018d8835128987edf0111637dd98e90599cc80310fef75d95a",
+    "lines": 7
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\model.safetensors",
+    "bytes": 307867048
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\special_tokens_map.json",
+    "bytes": 2201,
+    "sha256": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+    "lines": 107
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\spiece.model",
+    "bytes": 791656
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\tokenizer.json",
+    "bytes": 2424064
+  },
+  {
+    "path": "outputs\\chc\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\tokenizer_config.json",
+    "bytes": 2539,
+    "sha256": "fcde0f79bffda3688119c94330866a8fbf8de20ae65a8c492c9bd47c704655a0",
+    "lines": 113
+  },
+  {
+    "path": "outputs\\chc\\smoke\\detector\\detector_metrics.json",
+    "bytes": 1654,
+    "sha256": "47e5c0a3b681c9b9ce33e6da76aea73a6ecbd51f8edb781a450d3c58071f302a",
+    "lines": 74
+  },
+  {
+    "path": "outputs\\chc\\smoke\\detector\\detector_predictions.csv",
+    "bytes": 707821
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_42\\benefit_metrics.json",
+    "bytes": 269,
+    "sha256": "9a00bff2d42a3e7731324b265163824b6a2a8d84fb63e32c09890bbc7f2ae241",
+    "lines": 14
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_42\\benefit_predictions.csv",
+    "bytes": 22459
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_42\\policy_predictions.csv",
+    "bytes": 564308
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_42\\policy_summary.csv",
+    "bytes": 7136
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_43\\benefit_metrics.json",
+    "bytes": 269,
+    "sha256": "efa90e4914080b8de5ea583574f320836f24ddb9b4aa94f184390cdc50c57224",
+    "lines": 14
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_43\\benefit_predictions.csv",
+    "bytes": 22579
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_43\\policy_predictions.csv",
+    "bytes": 564286
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_43\\policy_summary.csv",
+    "bytes": 7136
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_44\\benefit_metrics.json",
+    "bytes": 269,
+    "sha256": "717b0b1041d390aec52f077a51807985c60a69b89e63f97e155936d1e50e4ad3",
+    "lines": 14
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_44\\benefit_predictions.csv",
+    "bytes": 22624
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_44\\policy_predictions.csv",
+    "bytes": 564314
+  },
+  {
+    "path": "outputs\\chc\\smoke\\eval_seed_44\\policy_summary.csv",
+    "bytes": 7122
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\ablation_comparison.caption.txt",
+    "bytes": 122,
+    "sha256": "86dfe00119a7f1f8933fa42d05373d82b37d410fcecc967f2d2d836b9f7059c2",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\ablation_comparison.pdf",
+    "bytes": 13205
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\ablation_comparison.png",
+    "bytes": 69792
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\benefit_prediction_error.caption.txt",
+    "bytes": 94,
+    "sha256": "a2f836dcb0bf1aa34ee93396505bafb100d4f95dc11a9b6893df990df8436bea",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\benefit_prediction_error.pdf",
+    "bytes": 11697
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\benefit_prediction_error.png",
+    "bytes": 39115
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\budget_accuracy.caption.txt",
+    "bytes": 141,
+    "sha256": "00cb31ba565eb55480fa327d77a14e539ccaa2b631bd747de2ec92ac65cf4226",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\budget_accuracy.pdf",
+    "bytes": 17222
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\budget_accuracy.png",
+    "bytes": 55919
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\cascade_reduction.caption.txt",
+    "bytes": 122,
+    "sha256": "86dfe00119a7f1f8933fa42d05373d82b37d410fcecc967f2d2d836b9f7059c2",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\cascade_reduction.pdf",
+    "bytes": 13623
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\cascade_reduction.png",
+    "bytes": 67302
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\detector_calibration.caption.txt",
+    "bytes": 105,
+    "sha256": "de6bcb5545078f4b0504030f35a39f0df920998ce157ee0022356c58f6fca6f0",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\detector_calibration.pdf",
+    "bytes": 11904
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\detector_calibration.png",
+    "bytes": 50729
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\detector_confusion.caption.txt",
+    "bytes": 96,
+    "sha256": "c3fedc06d1c99672dc6d508f084af6bd1d9561e0d7bcd318b64fd97e6e4a3c36",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\detector_confusion.pdf",
+    "bytes": 13647
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\detector_confusion.png",
+    "bytes": 36550
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\downstream_final_node_error.caption.txt",
+    "bytes": 122,
+    "sha256": "86dfe00119a7f1f8933fa42d05373d82b37d410fcecc967f2d2d836b9f7059c2",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\downstream_final_node_error.pdf",
+    "bytes": 14337
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\downstream_final_node_error.png",
+    "bytes": 68566
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\example_dependency_graph.caption.txt",
+    "bytes": 90,
+    "sha256": "fdaaab8cca0d623d7ef7edcdc266159ac66a361b4cf29923f242cfe8a7c743d0",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\example_dependency_graph.pdf",
+    "bytes": 15716
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\example_dependency_graph.png",
+    "bytes": 71580
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\final_answer_accuracy.caption.txt",
+    "bytes": 122,
+    "sha256": "86dfe00119a7f1f8933fa42d05373d82b37d410fcecc967f2d2d836b9f7059c2",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\final_answer_accuracy.pdf",
+    "bytes": 13678
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\final_answer_accuracy.png",
+    "bytes": 66747
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\intervention_case_study.caption.txt",
+    "bytes": 122,
+    "sha256": "9801bd663f429197ede7dd578458279c2db0d9cab8fa054d07c837de97832acb",
+    "lines": 1
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\intervention_case_study.pdf",
+    "bytes": 16295
+  },
+  {
+    "path": "outputs\\chc\\smoke\\figures\\intervention_case_study.png",
+    "bytes": 87119
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_42.last.pt",
+    "bytes": 106477
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_42.pt",
+    "bytes": 105317
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_42.training.json",
+    "bytes": 3653,
+    "sha256": "14e927fcabe6b4538fa771797e0cbb20a7dc2d3aa047e808587f1cd0ae55fd52",
+    "lines": 138
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_43.last.pt",
+    "bytes": 106541
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_43.pt",
+    "bytes": 106213
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_43.training.json",
+    "bytes": 3653,
+    "sha256": "6c152f61f42ad303531e7cf99f03218fa2d8396c973c2bca98aee18080d5cc3d",
+    "lines": 138
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_44.last.pt",
+    "bytes": 106477
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_44.pt",
+    "bytes": 106085
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\graph_44.training.json",
+    "bytes": 3653,
+    "sha256": "1fd09f252a2e375ce9770ca9b199f0b862e6fd16db6ad323f48f3e8488feefa2",
+    "lines": 138
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\tabular_42.joblib",
+    "bytes": 44510
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\tabular_43.joblib",
+    "bytes": 44510
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\tabular_44.joblib",
+    "bytes": 44510
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\training_summary.json",
+    "bytes": 13362,
+    "sha256": "87040ab26ba563e19c42e57f808934f365d08ea1dfad2f8e61cc4d3f1cc9fb12",
+    "lines": 488
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\without_graph_42.joblib",
+    "bytes": 44114
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\without_graph_43.joblib",
+    "bytes": 44114
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\without_graph_44.joblib",
+    "bytes": 44114
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\without_risk_42.joblib",
+    "bytes": 42298
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\without_risk_43.joblib",
+    "bytes": 42298
+  },
+  {
+    "path": "outputs\\chc\\smoke\\models\\without_risk_44.joblib",
+    "bytes": 42298
+  },
+  {
+    "path": "results\\checkpoints\\best_baseline_clf.joblib",
+    "bytes": 80863
+  },
+  {
+    "path": "results\\checkpoints\\best_baseline_clf.joblib.bak",
+    "bytes": 80863
+  },
+  {
+    "path": "results\\checkpoints\\best_baseline_vec.joblib",
+    "bytes": 382389
+  },
+  {
+    "path": "results\\checkpoints\\best_baseline_vec.joblib.bak",
+    "bytes": 381941
+  },
+  {
+    "path": "results\\figures\\ablation_study_f1.png",
+    "bytes": 154752
+  },
+  {
+    "path": "results\\figures\\confusion_matrix.png",
+    "bytes": 77814
+  },
+  {
+    "path": "results\\figures\\correction_metrics.png",
+    "bytes": 94690
+  },
+  {
+    "path": "results\\figures\\evidence_quality_f1.png",
+    "bytes": 76837
+  },
+  {
+    "path": "results\\figures\\fixed_vs_adaptive_tradeoff.png",
+    "bytes": 126148
+  },
+  {
+    "path": "results\\figures\\hallucination_types_recall.png",
+    "bytes": 93053
+  },
+  {
+    "path": "results\\predictions\\correction_predictions.csv",
+    "bytes": 165287
+  },
+  {
+    "path": "results\\predictions\\model_benchmark_predictions.csv",
+    "bytes": 2529632
+  },
+  {
+    "path": "results\\predictions_backup\\correction_predictions.csv",
+    "bytes": 164256
+  },
+  {
+    "path": "results\\tables\\ablation_study.csv",
+    "bytes": 574
+  },
+  {
+    "path": "results\\tables\\correction_reverification_metrics.csv",
+    "bytes": 422
+  },
+  {
+    "path": "results\\tables\\error_analysis_cases.csv",
+    "bytes": 1444
+  },
+  {
+    "path": "results\\tables\\evidence_quality_experiment.csv",
+    "bytes": 265
+  },
+  {
+    "path": "results\\tables\\fixed_vs_adaptive_verification.csv",
+    "bytes": 376
+  },
+  {
+    "path": "results\\tables\\hallucination_subtype_analysis.csv",
+    "bytes": 223
+  },
+  {
+    "path": "results\\tables\\hyperparameter_tuning.csv",
+    "bytes": 1228
+  },
+  {
+    "path": "results\\tables\\master_experiment_comparison.csv",
+    "bytes": 557
+  },
+  {
+    "path": "results\\tables\\model_benchmark_test.csv",
+    "bytes": 512
+  },
+  {
+    "path": "results\\tables\\unseen_question_robustness.csv",
+    "bytes": 218
+  },
+  {
+    "path": "results\\tables_backup\\ablation_study.csv",
+    "bytes": 570
+  },
+  {
+    "path": "results\\tables_backup\\correction_reverification_metrics.csv",
+    "bytes": 387
+  },
+  {
+    "path": "results\\tables_backup\\error_analysis_cases.csv",
+    "bytes": 1444
+  },
+  {
+    "path": "results\\tables_backup\\evidence_quality_experiment.csv",
+    "bytes": 264
+  },
+  {
+    "path": "results\\tables_backup\\fixed_vs_adaptive_verification.csv",
+    "bytes": 376
+  },
+  {
+    "path": "results\\tables_backup\\hallucination_subtype_analysis.csv",
+    "bytes": 223
+  },
+  {
+    "path": "results\\tables_backup\\hyperparameter_tuning.csv",
+    "bytes": 1228
+  },
+  {
+    "path": "results\\tables_backup\\master_experiment_comparison.csv",
+    "bytes": 560
+  },
+  {
+    "path": "results\\tables_backup\\model_benchmark_test.csv",
+    "bytes": 513
+  },
+  {
+    "path": "results\\tables_backup\\unseen_question_robustness.csv",
+    "bytes": 222
+  },
+  {
+    "path": "results\\checkpoints\\best_transformer_detector\\config.json",
+    "bytes": 669,
+    "sha256": "356390a2d48577e328dd42ef023c86a82eefb970e8a8d08bd41cf560bda9c6b4",
+    "lines": 27
+  },
+  {
+    "path": "results\\checkpoints\\best_transformer_detector\\model.safetensors",
+    "bytes": 267832560
+  },
+  {
+    "path": "results\\checkpoints\\best_transformer_detector\\tokenizer.json",
+    "bytes": 711661,
+    "sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+    "lines": 30686
+  },
+  {
+    "path": "results\\checkpoints\\best_transformer_detector\\tokenizer_config.json",
+    "bytes": 366,
+    "sha256": "e1c2a61a99bda00f6c55303a210b30e2f92dcf8b555e215812e2eb583e177ffd",
+    "lines": 15
+  },
+  {
+    "path": "results\\checkpoints\\best_transformer_detector\\training_meta.json",
+    "bytes": 266,
+    "sha256": "b8a8dab7cdec85cac1cf501d837ff09fddb1a0ed5a7b8809cf600ee49118e920",
+    "lines": 13
+  }
+]

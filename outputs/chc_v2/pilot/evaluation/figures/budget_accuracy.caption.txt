@@ -1,0 +1,1 @@
+Budget-two outcomes are actual joint generations. Cost-aware methods can use fewer calls than their cap.

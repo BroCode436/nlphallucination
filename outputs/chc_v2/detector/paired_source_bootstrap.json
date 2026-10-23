@@ -1,0 +1,24 @@
+{
+  "selected_method": "distilbert_full128_platt",
+  "selection": "Validation F1 only; test not used for choice",
+  "rows": 1024,
+  "source_clusters": 397,
+  "bootstrap_replicates": 2000,
+  "seed": 42,
+  "original_fixed_threshold_f1": 0.2591093117408907,
+  "selected_f1": 0.34146341463414637,
+  "f1_difference": 0.08235410289325568,
+  "original_f1_interval": [
+    0.2072915045563798,
+    0.31250313126252505
+  ],
+  "selected_f1_interval": [
+    0.26666666666666666,
+    0.4141048537524308
+  ],
+  "difference_interval": [
+    0.024736151291117524,
+    0.13440295170204686
+  ],
+  "interpretation": "Descriptive paired source-cluster bootstrap; no multiplicity-adjusted confirmatory claim"
+}

@@ -1,0 +1,53 @@
+{
+  "attempted_question_seed_pairs": 300,
+  "attempted_unique_questions": 300,
+  "episodes": 97,
+  "eligible_questions": 97,
+  "questions_by_split": {
+    "test": 18,
+    "train": 66,
+    "validation": 13
+  },
+  "rejection_counts": {
+    "initial_prefix_not_automatically_supported": 188,
+    "eligible": 97,
+    "no_automatically_contradicted_mutation": 7,
+    "selected_corruption_failed_pre_outcome_validity": 5,
+    "invalid_or_short_initial_trace": 3
+  },
+  "richer_benefit_counts": {
+    "positive": 15,
+    "zero": 161,
+    "negative": 12
+  },
+  "atomic_prefix_eligible_episodes": 97,
+  "selected_corruption_valid_episodes": 97,
+  "harmful_repair_proxy_actions": 0,
+  "richer_missing_targets": 6,
+  "final_only_benefit_counts": {
+    "positive": 9,
+    "zero": 183,
+    "negative": 2
+  },
+  "accepted_corrections": 80,
+  "rejected_or_unchanged": 114,
+  "unchanged_final_answer_actions": 152,
+  "candidate_counts_by_family": {
+    "evidence_misattribution": 218,
+    "unsupported_conclusion": 218,
+    "entity_substitution": 177,
+    "entity_disambiguation": 177,
+    "negation_error": 158,
+    "incorrect_number": 51,
+    "incorrect_date": 37,
+    "multi_hop_composition": 28
+  },
+  "eligible_candidates_by_family": {
+    "negation_error": 154,
+    "entity_substitution": 63,
+    "incorrect_number": 38,
+    "incorrect_date": 35
+  },
+  "human_review_completed": false,
+  "scope": "Automatic NLI proxy labels on a filtered controlled challenge set; not human-validated or natural error prevalence"
+}

@@ -1,0 +1,1 @@
+Central comparison: final-only versus richer-target training with identical architectures and visible features.

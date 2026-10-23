@@ -1,0 +1,1 @@
+Actual saved DistilBERT predictions on the sampled RAGTruth test claims; not a causal benchmark.

@@ -7,6 +7,7 @@ Primary Dataset: RAGTruth (from official GitHub: https://github.com/ParticleMedi
 Flow:
 Load RAGTruth -> Dataset Inspection -> Preprocessing -> EDA -> Model Identification
 """
+from typing import Any as _DocAny
 
 import os
 import json
@@ -25,7 +26,23 @@ os.makedirs(DATA_RAW, exist_ok=True)
 # ------------------------------------------------------------------------------
 # STEP 2: LOAD & INSPECT RAGTRUTH DATASET
 # ------------------------------------------------------------------------------
-def load_and_inspect_ragtruth():
+def load_and_inspect_ragtruth() -> _DocAny:
+    """Load and inspect ragtruth.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters: No explicit caller arguments beyond an instance/class if applicable.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     resp_file = os.path.join(DATA_RAW, 'response.jsonl')
     src_file = os.path.join(DATA_RAW, 'source_info.jsonl')
     base_url = 'https://raw.githubusercontent.com/ParticleMedia/RAGTruth/main/dataset/'
@@ -34,7 +51,7 @@ def load_and_inspect_ragtruth():
     if not os.path.exists(resp_file):
         print("Downloading response.jsonl from GitHub...")
         urllib.request.urlretrieve(base_url + 'response.jsonl', resp_file)
-        
+
     if not os.path.exists(src_file):
         print("Downloading source_info.jsonl from GitHub...")
         urllib.request.urlretrieve(base_url + 'source_info.jsonl', src_file)
@@ -55,7 +72,7 @@ def load_and_inspect_ragtruth():
             src = sources.get(sid, {})
             task = src.get('task_type', '')
             sinfo = src.get('source_info', '')
-            
+
             # Clean evidence extraction based on task type
             if isinstance(sinfo, str):
                 evidence = sinfo
@@ -69,10 +86,10 @@ def load_and_inspect_ragtruth():
                     evidence = str(sinfo)
             else:
                 evidence = str(sinfo)
-                
+
             labels = item.get('labels', [])
             types = list(set([span.get('label_type', 'Unknown') for span in labels])) if labels else ['Factual']
-            
+
             rows.append({
                 'id': item.get('id'),
                 'source_id': sid,
@@ -97,7 +114,24 @@ def load_and_inspect_ragtruth():
 # ------------------------------------------------------------------------------
 # STEP 3: PREPROCESSING
 # ------------------------------------------------------------------------------
-def preprocess_data(df):
+def preprocess_data(df: _DocAny) -> _DocAny:
+    """Preprocess data.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters:
+            df: Df supplied by the caller; see the operation and call sites for its concrete format.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\nMissing values check:")
     print(df.isnull().sum())
 
@@ -122,7 +156,24 @@ def preprocess_data(df):
 # ------------------------------------------------------------------------------
 # STEP 4: EDA (3-4 SIMPLE PLOTS)
 # ------------------------------------------------------------------------------
-def run_eda(df_clean):
+def run_eda(df_clean: _DocAny) -> _DocAny:
+    """Run eda.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters:
+            df_clean: DataFrame containing clean records for this operation.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     # Graph 1: Hallucination Label Distribution
     plt.figure(figsize=(6, 4))
     df_clean['has_hallucination'].value_counts().plot(kind='bar', color=['#2ca02c', '#d62728'])
@@ -178,7 +229,23 @@ def run_eda(df_clean):
 # ------------------------------------------------------------------------------
 # STEP 5: MODEL IDENTIFICATION
 # ------------------------------------------------------------------------------
-def explain_models():
+def explain_models() -> _DocAny:
+    """Explain models.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters: No explicit caller arguments beyond an instance/class if applicable.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n=====================================")
     print("MODEL IDENTIFICATION (CONCEPTUAL)")
     print("=====================================")

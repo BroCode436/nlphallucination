@@ -1,0 +1,1 @@
+Platt parameters are fitted only on validation; calibration can still generalize poorly.

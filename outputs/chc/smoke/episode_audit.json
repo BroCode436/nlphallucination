@@ -1,0 +1,11 @@
+{
+  "episodes": 387,
+  "questions_by_split": {
+    "train": 32,
+    "validation": 8,
+    "test": 10
+  },
+  "human_review_completed": false,
+  "full_downstream_factual_labels_available": false,
+  "passed_structural_checks": true
+}

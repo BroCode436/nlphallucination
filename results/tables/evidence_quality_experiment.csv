@@ -1,5 +1,5 @@
 Evidence Quality,Samples,Accuracy,Precision,Recall,F1,Coverage (%),Abstention Rate (%)
-Strong,662,0.6962,0.7444,0.396,0.517,91.99,8.01
-Weak,331,0.6767,0.7713,0.7286,0.7494,90.63,9.37
-Irrelevant,7,1.0,1.0,1.0,1.0,42.86,57.14
+Strong,662,0.6982,0.7179,0.448,0.5517,91.09,8.91
+Weak,331,0.6832,0.7704,0.7475,0.7588,91.54,8.46
+Irrelevant,7,0.5,0.0,0.0,0.0,28.57,71.43
 No Evidence,0,N/A,N/A,N/A,N/A,,N/A

@@ -1,0 +1,18 @@
+{
+  "reasoner_model": "google/flan-t5-small",
+  "max_input_tokens": 1024,
+  "max_new_tokens": 24,
+  "sample_generation": true,
+  "generation_seeds": [101, 102, 103],
+  "training_seeds": [42, 43, 44],
+  "max_conditions": 3,
+  "graph_epochs": 25,
+  "graph_batch_size": 16,
+  "gradient_accumulation": 2,
+  "device": "auto",
+  "cost_lambda": 0.01,
+  "smoke": {"official_train_questions": 40, "official_validation_questions": 10},
+  "pilot": {"official_train_questions": 200, "official_validation_questions": 500},
+  "budgets": [0, 1, 2, 3],
+  "scientific_scope": "Controlled working-note interventions, uncertain textual graphs, observed final-answer loss only"
+}

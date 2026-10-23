@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CHC Research Lab</title>
+  <style>
+    body{font:16px/1.6 system-ui;background:#101827;color:#eef4ff;max-width:1150px;margin:35px auto;padding:20px}
+    h1{font-size:34px}textarea,input,select{box-sizing:border-box;width:100%;padding:12px;background:#1b2940;color:white;border:1px solid #62738d;border-radius:8px;margin:8px 0 20px}
+    textarea{min-height:105px}button{padding:12px 22px;background:#9ce5c4;border:0;border-radius:7px;font-weight:bold;cursor:pointer}
+    section{padding:24px;background:#1b2940;border-radius:12px;margin:24px 0}.muted{color:#bbc9dd}
+    .node{padding:14px;border:1px solid #62738d;border-radius:8px;margin:12px 0}.selected{border:3px solid #9ce5c4}
+    pre{white-space:pre-wrap;overflow-wrap:anywhere}a{color:#a9d5ff}label{font-weight:bold}svg{width:100%;background:#142138;border-radius:8px}
+  </style>
+</head>
+<body><p style="padding:12px"><a href="/chc/propagate">Open CHC-Propagate: observable traces and interventions</a></p>
+  <h1>Causal Hallucination Containment</h1>
+  <p class="muted">Controlled intervention research. Textual graph edges and risk scores are predictions, not verified causal facts.</p>
+  <p><a href="/">Original correction interface</a></p>
+  <label for="question">Multi-step factual question</label>
+  <textarea id="question">Which magazine was started first Arthur's Magazine or First for Women?</textarea>
+  <label for="evidence">Evidence (optional; blank searches cached HotpotQA passages)</label>
+  <textarea id="evidence" placeholder="Paste source passages. Cached retrieval searches a research corpus, not the live web."></textarea>
+  <label for="trace">Intermediate claims (optional; one per line)</label>
+  <textarea id="trace" placeholder="Blank extracts up to three relevant evidence sentences. This is not a semantic atomic-claim model."></textarea>
+  <label for="budget">Verification budget</label>
+  <select id="budget"><option>0</option><option selected>1</option><option>2</option><option>3</option></select>
+  <label for="policy">Policy</label>
+  <select id="policy">
+    <option value="chc_tabular">Learned tabular CHC</option><option value="chc_graph">Learned graph CHC</option>
+    <option value="uncertainty">Highest predicted error risk</option><option value="dependency">Downstream reach</option>
+    <option value="risk_dependency">Risk × reach</option><option value="random">Random</option>
+  </select>
+  <label for="reference">Reference answer (optional; evaluation only)</label>
+  <input id="reference" placeholder="Leave blank for live predictions without ground truth">
+  <button id="run">Generate, select, verify, and regenerate</button>
+  <div id="result" aria-live="polite"></div>
+  <script>
+    const el = id => document.getElementById(id);
+    // Use textContent for model/user text, so evidence is never executed as HTML.
+    function add(parent, tag, text) {
+      const element = document.createElement(tag);
+      element.textContent = text;
+      parent.append(element);
+      return element;
+    }
+    function drawGraph(parent, state, selected) {
+      // A fixed small-node layout makes directions visible without a graph library.
+      // Links come from the saved state; layout does not infer additional edges.
+      const ns = 'http://www.w3.org/2000/svg';
+      function svgElement(tag, attributes, text) {
+        const element = document.createElementNS(ns, tag);
+        for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, value);
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+      const svg = svgElement('svg', {viewBox:'0 0 900 310', role:'img', 'aria-label':'Uncertain textual dependency graph'});
+      const definitions = svgElement('defs', {});
+      const marker = svgElement('marker', {id:'arrow', markerWidth:10, markerHeight:10, refX:8, refY:3, orient:'auto'});
+      marker.append(svgElement('path', {d:'M0,0 L0,6 L9,3 z', fill:'#b8cce5'}));
+      definitions.append(marker); svg.append(definitions);
+      const positions = {};
+      state.claims.forEach((claim, index) => {
+        positions[claim.id] = claim.is_final ? {x:450,y:240} : {x:150+index*280,y:70};
+      });
+      for (const edge of state.edges) {
+        const source = positions[edge.source], target = positions[edge.target];
+        const horizontal = source.y === target.y;
+        svg.append(svgElement('line', {
+          x1:source.x+(horizontal?110:0), y1:source.y+(horizontal?0:35),
+          x2:target.x-(horizontal?120:0), y2:target.y-(horizontal?0:38),
+          stroke:'#b8cce5','stroke-width':2,'stroke-dasharray':'5 4','marker-end':'url(#arrow)'
+        }));
+      }
+      for (const claim of state.claims) {
+        const position=positions[claim.id], group=svgElement('g',{});
+        group.append(svgElement('title',{},claim.text));
+        group.append(svgElement('rect',{x:position.x-120,y:position.y-35,width:240,height:70,rx:8,
+          fill:claim.is_final?'#263e60':'#20334e',stroke:selected.includes(claim.id)?'#9ce5c4':'#6d85a4',
+          'stroke-width':selected.includes(claim.id)?4:1}));
+        group.append(svgElement('text',{x:position.x,y:position.y-8,'text-anchor':'middle',fill:'#eef4ff','font-size':14},
+          claim.is_final?'Final-answer placeholder':claim.id+' · predicted risk '+claim.risk.toFixed(3)));
+        group.append(svgElement('text',{x:position.x,y:position.y+16,'text-anchor':'middle',fill:'#c4d4e8','font-size':11},
+          claim.text.slice(0,34)+(claim.text.length>34?'…':'')));
+        svg.append(group);
+      }
+      parent.append(svg);
+    }
+    el('run').onclick = async () => {
+      el('run').disabled=true; el('result').textContent='Running actual local models…';
+      try {
+        const response=await fetch('/api/chc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+          question:el('question').value,evidence:el('evidence').value,trace:el('trace').value.split('\n').filter(x=>x.trim()),
+          budget:Number(el('budget').value),policy:el('policy').value,reference:el('reference').value
+        })});
+        const data=await response.json(); el('result').replaceChildren();
+        const panel=add(el('result'),'section','');
+        if(data.error){add(panel,'p',data.error);return;}
+        add(panel,'h2','Reasoning graph and intervention'); add(panel,'p',data.retrieval_basis);
+        drawGraph(panel,data.state,data.selected);
+        add(panel,'p','Dashed arrows are uncertain textual dependencies. Green borders identify selected checks.');
+        for(const claim of data.state.claims){
+          const node=add(panel,'div',''); node.className='node'+(data.selected.includes(claim.id)?' selected':'');
+          add(node,'strong',claim.id+(claim.is_final?' — unfilled final-answer node':' — predicted risk '+claim.risk.toFixed(3)));
+          add(node,'p',claim.text);
+          if(data.scores[claim.id]!==undefined){
+            const features=data.features[claim.id];
+            add(node,'p','Priority / predicted benefit: '+data.scores[claim.id].toFixed(4)+
+              ' · downstream reach: '+features.descendants+' · estimated verification tokens: '+features.verification_tokens);
+          }
+        }
+        add(panel,'h2','Actual continuations');
+        add(panel,'p','Before: '+data.before.answer); add(panel,'p','After: '+data.after.answer);
+        add(panel,'p','Selected checks: '+data.selected.length+' / '+data.budget);
+        add(panel,'p',data.evaluation?JSON.stringify(data.evaluation):
+          'No reference supplied: factual improvement is unknown. Changed wording is not proof of improvement.');
+        const details=add(panel,'details',''); add(details,'summary','Evidence, verification actions, features, and complete results');
+        add(details,'pre',JSON.stringify(data,null,2));
+      } catch(error) {el('result').textContent=error.message;}
+      finally {el('run').disabled=false;}
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Treat publication media as binary; Markdown trailing spaces are intentional hard breaks.
+*.pdf binary
+*.png binary
+*.joblib binary
+*.pt binary
+*.md whitespace=-blank-at-eol

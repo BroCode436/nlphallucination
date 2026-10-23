@@ -1,0 +1,9 @@
+# Install the existing project's requirements plus these additions.
+# Torch must be installed with the CUDA wheel appropriate for your driver.
+-r requirements.txt
+transformers>=5.0,<6
+networkx>=3.0
+sentencepiece>=0.2
+lm-format-enforcer==0.11.3
+interegular==0.3.3
+pytest>=8

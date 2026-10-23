@@ -1,0 +1,50 @@
+{
+  "transport": "Actual BaseHTTPRequestHandler over in-memory socket streams; not a TCP reachability test",
+  "responses": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "response_bytes": 3080
+    },
+    {
+      "method": "GET",
+      "path": "/chc",
+      "status": 200,
+      "response_bytes": 8092
+    },
+    {
+      "method": "GET",
+      "path": "/chc/propagate",
+      "status": 200,
+      "response_bytes": 7249
+    },
+    {
+      "method": "POST",
+      "path": "/api/chc-v2",
+      "status": 200,
+      "response_bytes": 20028
+    },
+    {
+      "method": "POST",
+      "path": "/api/chc-v2",
+      "status": 200,
+      "response_bytes": 29276
+    },
+    {
+      "method": "POST",
+      "path": "/api/chc-v2",
+      "status": 400,
+      "response_bytes": 110
+    },
+    {
+      "method": "GET",
+      "path": "/missing",
+      "status": 404,
+      "response_bytes": 330
+    }
+  ],
+  "browser_reachability": "Blocked by execution sandbox loopback isolation; browser attempt timed out",
+  "real_saved_model_loaded": true,
+  "recorded_generation_case_verified": true
+}

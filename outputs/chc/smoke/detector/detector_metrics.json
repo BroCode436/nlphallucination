@@ -1,0 +1,74 @@
+{
+  "n": 256,
+  "positive_labels": 11,
+  "precision": 0.07142857142857142,
+  "recall": 0.5454545454545454,
+  "f1": 0.12631578947368421,
+  "brier": 0.23577558586810493,
+  "ece_10_bins": 0.38455977533885743,
+  "confusion_matrix": [
+    [
+      167,
+      78
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "calibration_bins": [
+    {
+      "mean_score": 0.07375901920551603,
+      "positive_fraction": 0.045454545454545456,
+      "n": 22
+    },
+    {
+      "mean_score": 0.1502717246611913,
+      "positive_fraction": 0.03333333333333333,
+      "n": 30
+    },
+    {
+      "mean_score": 0.25402879985896026,
+      "positive_fraction": 0.030303030303030304,
+      "n": 33
+    },
+    {
+      "mean_score": 0.3480545495237623,
+      "positive_fraction": 0.023809523809523808,
+      "n": 42
+    },
+    {
+      "mean_score": 0.45000543925497266,
+      "positive_fraction": 0.022222222222222223,
+      "n": 45
+    },
+    {
+      "mean_score": 0.5349297940731048,
+      "positive_fraction": 0.0,
+      "n": 20
+    },
+    {
+      "mean_score": 0.649305986730676,
+      "positive_fraction": 0.05263157894736842,
+      "n": 19
+    },
+    {
+      "mean_score": 0.7572333335876464,
+      "positive_fraction": 0.06666666666666667,
+      "n": 15
+    },
+    {
+      "mean_score": 0.8476708898177514,
+      "positive_fraction": 0.07692307692307693,
+      "n": 26
+    },
+    {
+      "mean_score": 0.907903328537941,
+      "positive_fraction": 0.5,
+      "n": 4
+    }
+  ],
+  "calibration_fitted": false,
+  "scope": "Natural sampled held-out RAGTruth; not causal propagation data",
+  "max_pair_tokens": 128
+}

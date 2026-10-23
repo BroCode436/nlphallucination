@@ -1,0 +1,35 @@
+{
+  "reason": "Remove duplicate seed field from log assembly; fitting algorithms, inputs and parameters unchanged; existing artifacts copied to models_interrupted_01 before resuming",
+  "previous_identity": {
+    "sha256": "3dabae97308b76f25141bbdc9ca1fe68aa1aac7d043dfed004cd757ab9fec5e7",
+    "graph_recipe": "source_bridge_v1",
+    "scope": "Train/validation features and targets only; final test excluded",
+    "training_recipe_sha256": {
+      "learning.py": "1bcd9dcc71cf85013c915777a4ee88cab195cb4a1a6cc3917437c01c4ed759bf",
+      "boosting.py": "cf7f10cd03fa8faff62f38e2a1172f97e11bc6ff650769d09e4d518a480ab4e5",
+      "graph_features.py": "24d2ca613b708c9232bc78ee1edba12a6718aace3a6303fdc182e3ec41988010"
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "diagnostic_complex": true
+  },
+  "updated_identity": {
+    "sha256": "3dabae97308b76f25141bbdc9ca1fe68aa1aac7d043dfed004cd757ab9fec5e7",
+    "graph_recipe": "source_bridge_v1",
+    "scope": "Train/validation features and targets only; final test excluded",
+    "training_recipe_sha256": {
+      "learning.py": "39143f8e03f27145a567af0ac4a06aae23ba937998a9220648ab0eccb1d1831c",
+      "boosting.py": "cf7f10cd03fa8faff62f38e2a1172f97e11bc6ff650769d09e4d518a480ab4e5",
+      "graph_features.py": "24d2ca613b708c9232bc78ee1edba12a6718aace3a6303fdc182e3ec41988010"
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "diagnostic_complex": true
+  }
+}

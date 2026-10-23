@@ -1,0 +1,18 @@
+{
+  "counts": {
+    "train": {
+      "positive": 14,
+      "zero": 99,
+      "negative": 6
+    },
+    "validation": {
+      "positive": 0,
+      "zero": 22,
+      "negative": 2
+    }
+  },
+  "primary_count_gate_passed": true,
+  "complex_models_executed": true,
+  "diagnostic_requested_before_test_evaluation": true,
+  "execution_scope": "Exploratory pilot; count gate is not a statistical power guarantee"
+}

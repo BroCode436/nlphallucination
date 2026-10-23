@@ -1,130 +1,115 @@
-# Adaptive Evidence-Guided Hallucination Detection and Correction with Post-Correction Verification for Large Language Models
+# Causal Hallucination Containment Research Prototype
 
-**Course Evaluation:** MSE-2 (College Research Project)  
-**Academic Level:** 2nd-Year B.Tech CSE (Artificial Intelligence)  
-**Primary Dataset:** RAGTruth (17,790 LLM responses across QA, Summary, Data2txt)  
-**Scientific Standards:** IEEE Peer-Review Standard (Zero Fabricated Metrics, Empirical Wall-Clock Latency, Zero Source-ID Leakage)
+Derived from [Prateekbaliyan/nlphallucination](https://github.com/Prateekbaliyan/nlphallucination). See [upstream attribution and rights](UPSTREAM_NOTICE.md) and [data notices](docs/DATA_NOTICE.md). No new software license is assigned to inherited code.
 
----
+## Executed CHC V2 study
 
-## 1. Project Overview & Research Question
+College research prototype investigating whether signed downstream factual-error targets help choose verification actions. The release includes actual model continuations, 31 small policy checkpoints, matched baselines, uncertainty estimates, a six-page paper and 109 previously passing tests. External transformer weights and the processed RAGTruth corpus are not bundled.
 
-Large Language Models (LLMs) used in Retrieval-Augmented Generation (RAG) often produce hallucinations—factual conflicts or ungrounded baseless claims. 
+On the same 1,024 RAGTruth examples, detector accuracy changes from 64.26% to 84.18% and F1 from 25.91% to 34.15%, mainly through validation-selected thresholds/calibration of unchanged neural weights. Recall decreases from 68.09% to 44.68%. The main gated containment policies do not improve final-answer accuracy: 2/16 eligible test questions remain correct. These are separate tasks. Broad causal, safety or state-of-the-art superiority is not established.
 
-### Core Research Question:
-> *"Can adaptive evidence-guided verification maintain hallucination detection quality while drastically reducing unnecessary verification effort compared to uniform fixed verification?"*
+Read the [accuracy comparison](docs/ACCURACY_AND_CHANGES.md), [paper](docs/CHC_COLLEGE_RESEARCH_PAPER.pdf), [experimental report](docs/EXPERIMENTAL_RESULTS.md) and [code explanation](docs/COMPLETE_CODE_EXPLANATION.md).
 
-### Proposed Pipeline:
-```
-LLM Response
-      ↓
-Claim Extraction (Sentence-level spans)
-      ↓
-Evidence Quality Assessment (Strong, Weak, Irrelevant, Absent)
-      ↓
-Adaptive Tiered Verification
-  ├── Fast Path: High confidence + Strong evidence → 1 verifier → Accept
-  ├── Medium Path: Ambiguous / Borderline → 2 verifiers consensus
-  ├── Deep Path: Low confidence / Conflict → 3 verifiers + Targeted Correction
-  └── Abstention: No reliable evidence → Abstain ("Not Verifiable")
-      ↓
-Targeted Claim-Level Correction (Evidence-grounded aligned substitution)
-      ↓
-Post-Correction Re-verification (Ensures no new hallucinations introduced)
-      ↓
-Final Verified Output
+## Quick start
+
+```powershell
+python -m venv .venv
+.venv/Scripts/Activate.ps1
+python -m pip install -r requirements_chc_v2.txt
+./run_chc_v2.ps1
 ```
 
----
+Open the printed local address with `/chc/propagate`. Recorded mode uses shipped experiment outputs. Live mode downloads frozen external models on first use unless `CHC_V2_CACHE` points to an existing cache; it requires enough memory and remains error-prone. Optional `chc.local.json` stores private workstation cache/dependency paths and is ignored by Git. The launcher itself contains no developer-specific path.
 
-## 2. Directory Layout
+A no-download recorded demonstration is available at [docs/CHC_V2_DEMO.html](docs/CHC_V2_DEMO.html). Download/open the HTML file locally; GitHub's code view does not execute it. The [reproduction guide](docs/GITHUB_REPRODUCTION.md) explains data/model requirements, controls and checks.
 
-```
-hallucination_project/
-├── AUDIT_REPORT.md                    # Comprehensive scientific & technical code audit
-├── RESULTS_SUMMARY.md                 # Empirical findings, sample sizes, and limitations
-├── README.md                          # Reproduction guide and execution commands
-├── requirements.txt                   # Environment package dependencies
-├── run_pipeline.py                    # Unified CLI pipeline entry point
-│
-├── configs/
-│   └── config.json                    # Centralized hyperparameters, seeds, and paths
-│
-├── tests/                             # Automated unit & integration test suite
-│   ├── test_preprocessing.py          # Sentence splitting & zero-leakage assertions
-│   ├── test_verification.py           # Evidence quality, conflict rules & abstention
-│   ├── test_correction.py             # Targeted repairs, CCPR, CIHR, and metrics
-│   └── test_pipeline.py               # End-to-end integration smoke test
-│
-├── data/
-│   ├── raw/                           # Raw RAGTruth dataset (response.jsonl, source_info.jsonl)
-│   └── processed/                     # Leak-free claims (96k train, 17k val, 18k test)
-│
-├── notebooks/
-│   ├── ragtruth_mse1.ipynb            # MSE-1: EDA, Preprocessing, Baseline formulation
-│   └── ragtruth_mse2.ipynb            # MSE-2: Research-grade verification & correction
-│
-├── src/
-│   ├── preprocessing.py               # Raw dataset loader & claim extractor
-│   ├── train.py                       # Baseline & Transformer detector training
-│   ├── verification.py                # Verification engine & adaptive routing policy
-│   ├── correction.py                  # Evidence-guided correction & operational metrics
-│   └── evaluate.py                    # Master benchmark, dual distribution evaluation, ablations
-│
-├── results/
-│   ├── checkpoints/                   # Fitted Logistic Regression & DistilBERT weights
-│   ├── figures/                       # Publication-ready plots (F1 tradeoff, confusion matrix)
-│   ├── tables/                        # CSV benchmark tables, ablations, and subtype metrics
-│   └── predictions/                   # Granular per-claim correction and evaluation logs
-│
-└── paper/
-    └── ieee_research_paper.md         # Full IEEE-formatted research paper draft
+## Original project and earlier extensions
+
+# Adaptive Evidence-Guided Hallucination Detection and Correction
+
+Research project using RAGTruth to classify sentence-level claims against supplied evidence, route uncertain cases through additional checks, propose corrections, and verify those proposals.
+
+## Current workflow
+
+1. Extract claims while preserving raw annotation coordinates.
+2. Split by source ID; audit both source IDs and normalized evidence fingerprints.
+3. Train TF-IDF + Logistic Regression and a DistilBERT evidence/claim cross-encoder.
+4. Route claims using model confidence, evidence coverage, and configurable thresholds.
+5. Check numerical claims against relevant evidence clauses before acceptance.
+6. Correct flagged claims, reject unsafe proposals, and preserve originals on failure.
+7. Evaluate detectors, calibration, source-bootstrap uncertainty, and policy coverage.
+8. Export corrections for independent human review.
+
+The lexical and numerical stages are heuristics. Verifier acceptance does not establish factual correctness. Independent correction safety needs reviewed final outputs.
+
+## Run
+
+Use a Python environment with requirements.txt installed. The active Windows installation used for validation was Python 3.12; invoke `python` if the `py -3.12` launcher is unavailable.
+
+```powershell
+python -m unittest discover tests -v
+python audit_dataset.py --output results/tables/dataset_audit.json
+python analyze_claim.py --claim "Alice scored 20 points." --evidence "Alice scored 10 points; Bob scored 20 points."
+python analyze_claim.py --model baseline --claim "Revenue was 90 million." --evidence "Revenue was 50 million."
+python run_pipeline.py --all
 ```
 
----
+`analyze_claim.py` defaults to explicitly identified heuristic mode. `--model baseline` and `--model transformer` load saved local checkpoints. Transformer inspection never downloads weights.
 
-## 3. How to Run & Reproduce
+The full pipeline can train missing checkpoints and takes substantially longer than the tests. `--force-train` with `--all` forces retraining. Training may download the configured pretrained base model.
 
-### Quick Start (Run Entire Pipeline & Tests)
-```bash
-py -3.12 run_pipeline.py --all  # (Options: --test, --preprocess, --train, --force-train, --evaluate)
+## Independent correction evaluation
+
+```powershell
+python review_corrections.py prepare --input results/predictions/correction_predictions.csv --output results/review/review.csv
+# Review every final claim against its evidence. Fill independent_post_label and reviewer.
+python review_corrections.py score --input results/review/review.csv --output results/review/independent_metrics.json
 ```
 
-### Run Automated Test Suite Only
-```bash
-py -3.12 -m unittest discover tests
-```
+Use 0 for supported, 1 for hallucinated, and 2 for uncertain. Hide the original gold-label column during review. Incomplete worksheets cannot produce independent safety metrics. The automatic CIHR field is null; the legacy automatic CSR field is a verifier-acceptance proxy only.
 
-### Run Data Preprocessing (with Leakage Assertions)
-```bash
-py -3.12 src/preprocessing.py
-```
+## Configuration and reproducibility
 
-### Run Baseline & Transformer Training
-```bash
-py -3.12 src/train.py
-```
+`src/settings.py` loads `configs/config.json`. Routing thresholds, evidence-quality thresholds, model architecture/context length, training batch size, epochs, weight decay, and the random seed are consumed by the implementation. Hyperparameter tuning searches several C values, n-gram ranges, and learning rates; values in the config are included in those grids. Some execution budgets, including the default 3,000-claim training subset and 2,000-claim natural evaluation subset, remain explicit code defaults.
 
-### Run Evaluation Suite (Dual Distribution & Latency Profiling)
-```bash
-py -3.12 src/evaluate.py
-```
+Random, NumPy, and PyTorch RNGs are seeded before transformer training; each learning-rate trial starts from the same seed. Deterministic cuDNN settings reduce variability but do not promise identical results across hardware and library versions. The existing checkpoints were not retrained as part of the improvements.
 
-### Update the Jupyter Notebook
-```bash
-py -3.12 build_updated_mse2_notebook.py
-```
+## Audited saved data (22 October 2026)
 
----
+| Split | Claims | Sources | Hallucinated claims |
+|---|---:|---:|---:|
+| Train | 96,804 | 2,138 | 10,977 |
+| Validation | 16,972 | 377 | 2,020 |
+| Test | 18,930 | 450 | 1,641 |
 
-## 4. Key Verified Experimental Findings
+No overlapping source IDs or identical normalized evidence fingerprints were found across these splits. There were no invalid binary labels, blank claims, or blank evidence fields. Test hallucination prevalence is 8.67%.
 
-1. **Zero Data Leakage:** Train (1,417 sources), Val (250 sources), and Test (295 sources) have strictly **0 overlapping source IDs**.
-2. **Dual Distribution Reality:**
-   - On the balanced test subset (50/50), DistilBERT cross-encoder achieves **F1 = 0.6701** (Accuracy 0.6790) vs. TF-IDF baseline **F1 = 0.5782**.
-   - On the natural test distribution (~8.7% prevalence), DistilBERT achieves **F1 = 0.2638** vs. TF-IDF baseline **F1 = 0.2169**, reflecting real-world class imbalance.
-3. **Adaptive Verification Efficiency & Precision:**
-   - Adaptive verification achieves **0.6571 F1**, **0.8050 Precision**, and **0.6968 Accuracy** on covered claims (92.33% coverage, abstaining on 46 ambiguous cases), reducing verification overhead from 3.00 calls down to 2.45 calls per claim.
-4. **Correction Fidelity & Safety:**
-   - Targeted evidence-guided correction achieves a **37.98% Correction Success Rate (CSR)** while maintaining a strict **0.00% Correction-Induced Hallucination Rate (CIHR)** and **87.50% Content Preservation (CCPR)** on factual assertions, with 14.75% explicit abstention on ambiguous context.
+## Evaluation notes
 
+- Detector benchmarks report F1, MCC, Brier score, calibration error, average precision, ROC AUC, and a source-cluster bootstrap F1 interval.
+- Policy benchmarks retain selective F1 and coverage, and add F1 on the same jointly covered claims plus detection recall over all gold hallucinations.
+- Policy order is randomized reproducibly after warm-up; timings cover complete policy calls.
+- Full-system timings include detection once and post-correction checks; call counts include post-correction verification.
+- Automatic correction acceptance is a proxy. Use the independent review workflow for factual CSR and CIHR.
+- Historical CSVs, figures, notebooks, and paper claims have not been regenerated. They must not be presented as measurements of this updated implementation.
+
+## Limits
+
+Numerical grounding is lexical and clause-based, not entity linking or logical entailment. Units, negation, coreference, and complex tables remain challenging. DistilBERT still uses the configured 128-token pair budget; evidence can be truncated. Full evidence retrieval, an independent NLI model, and a reviewed correction dataset are future research extensions.
+
+See `docs/IMPROVEMENTS_REPORT.md` for architecture, code explanations, validation, and the change inventory.
+
+
+## Local correction-validity model
+
+Run `python app.py --port 8765` and open http://127.0.0.1:8765. The saved model in `models/correction_validity.joblib` checks evidence support and preservation of supported original details. It is also loaded automatically by `EvidenceGuidedCorrector`.
+
+CLI: `python verify_correction.py --original "Alice scored 30 points." --evidence "Alice scored 10 points."`
+
+Additional tests: `python -m unittest test_model test_integration -v`. See `docs/CORRECTION_MODEL_REPORT.md` for measured results and limitations. This compact lexical prototype does not establish general semantic factuality or cross-language consistency.
+
+## CHC Research V2
+
+Executed local research release: 300 attempted questions, 90 primary episodes, 31 policy checkpoints, 109 passing tests. Primary held-out answer accuracy remains 12.5%; robust containment superiority is unproven. Read `docs/EXPERIMENTAL_RESULTS.md` and `docs/COMPLETE_CODE_EXPLANATION.md`.
+
+Set `CHC_V2_CACHE` to the existing external-model cache and `CHC_V2_RESULTS` to `outputs/chc_v2/pilot`; run `python app.py` and open `/chc/propagate`. See the experimental report for exact collection/training commands, provenance and limitations.

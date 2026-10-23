@@ -1,0 +1,13 @@
+method,baseline,metric,questions,difference,ci_low,ci_high,inference
+tabular_richer_all,tabular_final_only_all,correct,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,tabular_final_only_all,utility,15,0.016666666666666666,0.0,0.05,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,tabular_final_only_full_all,correct,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,tabular_final_only_full_all,utility,15,0.016666666666666666,0.0,0.05,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+graph_richer,graph_final_only,correct,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+graph_richer,graph_final_only,utility,16,-0.015625,-0.041666666666666664,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+semantic_richer,semantic_final_only,correct,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+semantic_richer,semantic_final_only,utility,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,uncertainty,correct,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,uncertainty,utility,15,0.05,0.0,0.13333333333333333,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,risk_dependency,correct,16,0.0,0.0,0.0,Descriptive question bootstrap; no multiplicity-adjusted significance claim
+tabular_richer_all,risk_dependency,utility,15,0.05,0.0,0.13333333333333333,Descriptive question bootstrap; no multiplicity-adjusted significance claim

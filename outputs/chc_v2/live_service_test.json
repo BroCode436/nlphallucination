@@ -1,0 +1,551 @@
+{
+  "status": "completed",
+  "elapsed_seconds": 134.5392216000473,
+  "scope": "Real local inference; supplied evidence unauthenticated; no gold/reference accuracy; not a TCP/browser test",
+  "result": {
+    "mode": "live",
+    "question": "When did Chandrayaan-3 land on the Moon and which organization developed it?",
+    "prefix": [
+      {
+        "id": "C1",
+        "text": "Chandrayaan-3 was launched in December 2022.",
+        "depends_on": [],
+        "evidence_ids": [
+          "E1"
+        ]
+      },
+      {
+        "id": "C2",
+        "text": "The Indian Space Research Organisation (ISRO) developed Chandrayaan-3.",
+        "depends_on": [],
+        "evidence_ids": [
+          "E1"
+        ]
+      }
+    ],
+    "pre_state": {
+      "question_id": "live",
+      "question": "When did Chandrayaan-3 land on the Moon and which organization developed it?",
+      "claims": [
+        {
+          "id": "C1",
+          "text": "Chandrayaan-3 was launched in December 2022.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "position": 0,
+          "is_final": false,
+          "risk": 0.13980100320428646,
+          "evidence_quality": 0.0011227036593481898,
+          "cost_tokens": 45,
+          "status": "contradicted"
+        },
+        {
+          "id": "C2",
+          "text": "The Indian Space Research Organisation (ISRO) developed Chandrayaan-3.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "position": 1,
+          "is_final": false,
+          "risk": 0.12030995813452855,
+          "evidence_quality": 0.9963567852973938,
+          "cost_tokens": 50,
+          "status": "supported"
+        },
+        {
+          "id": "final",
+          "text": "When did Chandrayaan-3 land on the Moon and which organization developed it?",
+          "evidence_ids": [],
+          "position": 2,
+          "is_final": true,
+          "risk": 0.5,
+          "evidence_quality": 0.0,
+          "cost_tokens": 1,
+          "status": "not_generated"
+        }
+      ],
+      "edges": [
+        {
+          "source": "C1",
+          "target": "final",
+          "kind": "possible_answer_relevance",
+          "confidence": 0.3,
+          "verified_causal": false
+        },
+        {
+          "source": "C2",
+          "target": "final",
+          "kind": "possible_answer_relevance",
+          "confidence": 0.3,
+          "verified_causal": false
+        }
+      ],
+      "evidence": {
+        "E1": {
+          "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+          "title": "Supplied mission facts",
+          "source": "User supplied; not authenticated",
+          "url": ""
+        }
+      }
+    },
+    "before": {
+      "generation": {
+        "raw": "{\n  \"claims\": [\n    {\n      \"id\": \"C3\",\n      \"text\": \"Chandrayaan-3 was launched on December 8, 2022.\",\n      \"depends_on\": [],\n      \"evidence_ids\": []\n    },\n    {\n      \"id\": \"C4\",\n      \"text\": \"The Indian Space Research Organisation (ISRO) developed Chandrayaan-3.\",\n      \"depends_on\": [],\n      \"evidence_ids\": []\n    }\n  ],\n  \"final_answer\": \"Yes\"\n}",
+        "trace": {
+          "claims": [
+            {
+              "id": "C3",
+              "text": "Chandrayaan-3 was launched on December 8, 2022.",
+              "depends_on": [],
+              "evidence_ids": [
+                "E1"
+              ]
+            },
+            {
+              "id": "C4",
+              "text": "The Indian Space Research Organisation (ISRO) developed Chandrayaan-3.",
+              "depends_on": [],
+              "evidence_ids": [
+                "E1"
+              ]
+            }
+          ],
+          "final_answer": "Yes",
+          "question": "When did Chandrayaan-3 land on the Moon and which organization developed it?",
+          "atomicity": "Prompt-constrained short factual claims; independent human atomicity review pending"
+        },
+        "validation_error": null,
+        "truncated": false,
+        "output_tokens": 113,
+        "output_limit_reached": false,
+        "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "revision": null,
+        "snapshots": [
+          "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+        ],
+        "seed": 101,
+        "input_tokens": 458,
+        "latency_ms": 11692.391499993391,
+        "cache_key": "6521695e419cf262ef09c387b6dcd64a014171b7790ae1143bb5294cf4b4d2f1",
+        "cache_hit": false,
+        "device": "cuda:0",
+        "constrained_json": false,
+        "raw_validation_error": "Every factual claim needs an available evidence ID",
+        "citation_alignment": [
+          {
+            "claim_id": "C3",
+            "assigned_evidence_id": "E1",
+            "entailment_score": 0.000260666391113773,
+            "contradiction_score": 0.9842885732650757,
+            "retrieved_source_relation": "contradicted_candidate",
+            "origin": "automatic_source_alignment; not model citation or human validation"
+          },
+          {
+            "claim_id": "C4",
+            "assigned_evidence_id": "E1",
+            "entailment_score": 0.9963567852973938,
+            "contradiction_score": 0.0004997484502382576,
+            "retrieved_source_relation": "supported_candidate",
+            "origin": "automatic_source_alignment; not model citation or human validation"
+          }
+        ],
+        "artifact_origin": "explicit_citation_aligned_model_claims",
+        "source_visibility": "full"
+      },
+      "judgments": [
+        {
+          "contradiction": 0.9842885732650757,
+          "entailment": 0.000260666391113773,
+          "neutral": 0.015450713224709034,
+          "aligned_evidence": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+          "untruncated_tokens": 47,
+          "truncated": false,
+          "cache_key": "c4c5407a2ef4c54040fcfc0b9e44fe326939f540638ce151ac67563e787b6939",
+          "claim_id": "C3",
+          "text": "Chandrayaan-3 was launched on December 8, 2022.",
+          "status": "contradicted",
+          "evidence_ids": [
+            "E1"
+          ],
+          "evidence": [
+            {
+              "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+              "title": "Supplied mission facts",
+              "source": "User supplied; not authenticated",
+              "url": "",
+              "id": "E1"
+            }
+          ],
+          "hallucination_score": 0.9842885732650757,
+          "predicted_classification": "contradicted",
+          "uncertainty": 0.015711426734924316,
+          "calibrated_probability": null,
+          "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+          "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+          "judgment_origin": "automatic_nli_proxy",
+          "human_review": "pending"
+        },
+        {
+          "contradiction": 0.0004997484502382576,
+          "entailment": 0.9963567852973938,
+          "neutral": 0.003143435576930642,
+          "aligned_evidence": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+          "untruncated_tokens": 50,
+          "truncated": false,
+          "cache_key": "9c6001feba2241c3e0037fdc09b94afdc09585a654e55ac719722cc1ecafefb2",
+          "claim_id": "C4",
+          "text": "The Indian Space Research Organisation (ISRO) developed Chandrayaan-3.",
+          "status": "supported",
+          "evidence_ids": [
+            "E1"
+          ],
+          "evidence": [
+            {
+              "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+              "title": "Supplied mission facts",
+              "source": "User supplied; not authenticated",
+              "url": "",
+              "id": "E1"
+            }
+          ],
+          "hallucination_score": 0.0004997484502382576,
+          "predicted_classification": "supported",
+          "uncertainty": 0.003643214702606201,
+          "calibrated_probability": null,
+          "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+          "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+          "judgment_origin": "automatic_nli_proxy",
+          "human_review": "pending"
+        }
+      ],
+      "correct": null,
+      "answer": "Yes",
+      "factual": {
+        "supported": 1,
+        "contradicted": 1,
+        "insufficient_evidence": 0,
+        "unreviewed": 0,
+        "downstream_claims": 2,
+        "evaluable_claims": 2,
+        "observed_propagation_rate": 0.5,
+        "label_origin": "automatic_nli_proxy; human_review_pending"
+      }
+    },
+    "after": {
+      "generation": {
+        "raw": "{\n  \"claims\": [\n    {\n      \"id\": \"C3\",\n      \"text\": \"Chandrayaan-3 was launched on October 27, 2022.\",\n      \"depends_on\": [],\n      \"evidence_ids\": []\n    },\n    {\n      \"id\": \"C4\",\n      \"text\": \"The Indian Space Research Organisation (ISRO) led the development of Chandrayaan-3.\",\n      \"depends_on\": [],\n      \"evidence_ids\": []\n    }\n  ],\n  \"final_answer\": \"Yes\"\n}",
+        "trace": {
+          "claims": [
+            {
+              "id": "C3",
+              "text": "Chandrayaan-3 was launched on October 27, 2022.",
+              "depends_on": [],
+              "evidence_ids": [
+                "E1"
+              ]
+            },
+            {
+              "id": "C4",
+              "text": "The Indian Space Research Organisation (ISRO) led the development of Chandrayaan-3.",
+              "depends_on": [],
+              "evidence_ids": [
+                "E1"
+              ]
+            }
+          ],
+          "final_answer": "Yes",
+          "question": "When did Chandrayaan-3 land on the Moon and which organization developed it?",
+          "atomicity": "Prompt-constrained short factual claims; independent human atomicity review pending"
+        },
+        "validation_error": null,
+        "truncated": false,
+        "output_tokens": 117,
+        "output_limit_reached": false,
+        "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+        "revision": null,
+        "snapshots": [
+          "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+        ],
+        "seed": 101,
+        "input_tokens": 461,
+        "latency_ms": 14083.194799954072,
+        "cache_key": "3582c4adb79fa7d451806c3cefa3bfa0352fbdfb0df2e4f5b2f149642e4eca63",
+        "cache_hit": false,
+        "device": "cuda:0",
+        "constrained_json": false,
+        "raw_validation_error": "Every factual claim needs an available evidence ID",
+        "citation_alignment": [
+          {
+            "claim_id": "C3",
+            "assigned_evidence_id": "E1",
+            "entailment_score": 0.00015382566198240966,
+            "contradiction_score": 0.9963266253471375,
+            "retrieved_source_relation": "contradicted_candidate",
+            "origin": "automatic_source_alignment; not model citation or human validation"
+          },
+          {
+            "claim_id": "C4",
+            "assigned_evidence_id": "E1",
+            "entailment_score": 0.9945570230484009,
+            "contradiction_score": 0.00027054769452661276,
+            "retrieved_source_relation": "supported_candidate",
+            "origin": "automatic_source_alignment; not model citation or human validation"
+          }
+        ],
+        "artifact_origin": "explicit_citation_aligned_model_claims",
+        "source_visibility": "full"
+      },
+      "judgments": [
+        {
+          "contradiction": 0.9963266253471375,
+          "entailment": 0.00015382566198240966,
+          "neutral": 0.003519515274092555,
+          "aligned_evidence": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+          "untruncated_tokens": 47,
+          "truncated": false,
+          "cache_key": "106ec8a3d2fbecb710267ef5b3b0f0079c24e74787c1f34774c4dc75810cbc15",
+          "claim_id": "C3",
+          "text": "Chandrayaan-3 was launched on October 27, 2022.",
+          "status": "contradicted",
+          "evidence_ids": [
+            "E1"
+          ],
+          "evidence": [
+            {
+              "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+              "title": "Supplied mission facts",
+              "source": "User supplied; not authenticated",
+              "url": "",
+              "id": "E1"
+            }
+          ],
+          "hallucination_score": 0.9963266253471375,
+          "predicted_classification": "contradicted",
+          "uncertainty": 0.003673374652862549,
+          "calibrated_probability": null,
+          "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+          "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+          "judgment_origin": "automatic_nli_proxy",
+          "human_review": "pending"
+        },
+        {
+          "contradiction": 0.00027054769452661276,
+          "entailment": 0.9945570230484009,
+          "neutral": 0.005172424018383026,
+          "aligned_evidence": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+          "untruncated_tokens": 53,
+          "truncated": false,
+          "cache_key": "379c2695a648a65af156b0f020829090b514ff43c673e4387360a221908cbc4d",
+          "claim_id": "C4",
+          "text": "The Indian Space Research Organisation (ISRO) led the development of Chandrayaan-3.",
+          "status": "supported",
+          "evidence_ids": [
+            "E1"
+          ],
+          "evidence": [
+            {
+              "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+              "title": "Supplied mission facts",
+              "source": "User supplied; not authenticated",
+              "url": "",
+              "id": "E1"
+            }
+          ],
+          "hallucination_score": 0.00027054769452661276,
+          "predicted_classification": "supported",
+          "uncertainty": 0.005442976951599121,
+          "calibrated_probability": null,
+          "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+          "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+          "judgment_origin": "automatic_nli_proxy",
+          "human_review": "pending"
+        }
+      ],
+      "correct": null,
+      "answer": "Yes",
+      "factual": {
+        "supported": 1,
+        "contradicted": 1,
+        "insufficient_evidence": 0,
+        "unreviewed": 0,
+        "downstream_claims": 2,
+        "evaluable_claims": 2,
+        "observed_propagation_rate": 0.5,
+        "label_origin": "automatic_nli_proxy; human_review_pending"
+      }
+    },
+    "selected": "C1",
+    "policy": "tabular_richer_all",
+    "action": {
+      "claim_id": "C1",
+      "question": "When did Chandrayaan-3 land on the Moon and which organization developed it?",
+      "original": "Chandrayaan-3 was launched in December 2022.",
+      "proposal": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+      "replacement": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+      "accepted": true,
+      "status": "corrected",
+      "rejection_reasons": [],
+      "missing_anchors": [],
+      "lexical_result": {
+        "original": "Chandrayaan-3 was launched in December 2022.",
+        "final_claim": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+        "status": "repaired",
+        "selected": {
+          "accepted": true,
+          "support_score": 0.9998241151406235,
+          "preservation_score": 0.9997932106155779,
+          "thresholds": {
+            "support": 0.95,
+            "preservation": 0.95
+          },
+          "reasons": [],
+          "status": "accepted",
+          "final_claim": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+          "evidence_excerpt": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+          "model_version": "1.0.0",
+          "assessment_basis": "Trained lexical verifier; not independent factual proof",
+          "proposal": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO)."
+        },
+        "candidates": [
+          {
+            "accepted": false,
+            "support_score": 0.0005750801125693302,
+            "preservation_score": 0.9997932106155779,
+            "thresholds": {
+              "support": 0.95,
+              "preservation": 0.95
+            },
+            "reasons": [
+              "Proposal lacks sufficient learned evidence support",
+              "A proposed number/date is absent from the most relevant evidence sentence"
+            ],
+            "status": "needs_review",
+            "final_claim": "Chandrayaan-3 was launched in December 2022.",
+            "evidence_excerpt": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+            "model_version": "1.0.0",
+            "assessment_basis": "Trained lexical verifier; not independent factual proof",
+            "proposal": "Chandrayaan-3 was launched in December 2022."
+          },
+          {
+            "accepted": true,
+            "support_score": 0.9998241151406235,
+            "preservation_score": 0.9997932106155779,
+            "thresholds": {
+              "support": 0.95,
+              "preservation": 0.95
+            },
+            "reasons": [],
+            "status": "accepted",
+            "final_claim": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+            "evidence_excerpt": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+            "model_version": "1.0.0",
+            "assessment_basis": "Trained lexical verifier; not independent factual proof",
+            "proposal": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO)."
+          },
+          {
+            "accepted": true,
+            "support_score": 0.9998241151406235,
+            "preservation_score": 0.9997932106155779,
+            "thresholds": {
+              "support": 0.95,
+              "preservation": 0.95
+            },
+            "reasons": [],
+            "status": "accepted",
+            "final_claim": "Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+            "evidence_excerpt": "Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+            "model_version": "1.0.0",
+            "assessment_basis": "Trained lexical verifier; not independent factual proof",
+            "proposal": "Chandrayaan-3 successfully landed on the Moon on August 23, 2023."
+          }
+        ]
+      },
+      "resolved_lexical_semantic_deferral": false,
+      "original_judgment": {
+        "contradiction": 0.9451773762702942,
+        "entailment": 0.0011227036593481898,
+        "neutral": 0.053699929267168045,
+        "aligned_evidence": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+        "untruncated_tokens": 45,
+        "truncated": false,
+        "cache_key": "5f096a728cfd5abbb9af2afe7f29a19fe96091adca9b2030b61b84dde8791f29",
+        "claim_id": "C1",
+        "text": "Chandrayaan-3 was launched in December 2022.",
+        "status": "contradicted",
+        "evidence_ids": [
+          "E1"
+        ],
+        "evidence": [
+          {
+            "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+            "title": "Supplied mission facts",
+            "source": "User supplied; not authenticated",
+            "url": "",
+            "id": "E1"
+          }
+        ],
+        "hallucination_score": 0.9451773762702942,
+        "predicted_classification": "contradicted",
+        "uncertainty": 0.05482262372970581,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending"
+      },
+      "proposed_judgment": {
+        "contradiction": 0.012248051352798939,
+        "entailment": 0.9456765651702881,
+        "neutral": 0.042075395584106445,
+        "aligned_evidence": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+        "untruncated_tokens": 52,
+        "truncated": false,
+        "cache_key": "fb5fe41b14622362b006747f43833105e1708b2382839353bfd0f64d2d281ce9",
+        "claim_id": "C1",
+        "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO).",
+        "status": "supported",
+        "evidence_ids": [
+          "E1"
+        ],
+        "evidence": [
+          {
+            "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+            "title": "Supplied mission facts",
+            "source": "User supplied; not authenticated",
+            "url": "",
+            "id": "E1"
+          }
+        ],
+        "hallucination_score": 0.012248051352798939,
+        "predicted_classification": "supported",
+        "uncertainty": 0.054323434829711914,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending"
+      },
+      "evidence_ids": [
+        "E1"
+      ],
+      "evidence": [
+        {
+          "text": "Chandrayaan-3 was developed by the Indian Space Research Organisation (ISRO). Chandrayaan-3 successfully landed on the Moon on August 23, 2023.",
+          "title": "Supplied mission facts",
+          "source": "User supplied; not authenticated",
+          "url": "",
+          "id": "E1"
+        }
+      ],
+      "calls": 1,
+      "estimated_tokens": 36,
+      "latency_ms": 702.3449999978766,
+      "human_review": "pending",
+      "harmful_repair_proxy": false
+    },
+    "evaluation_available": false,
+    "warning": "No reference answer: final factual accuracy is unmeasured. NLI judgments are fallible; edges are possible dependencies."
+  }
+}

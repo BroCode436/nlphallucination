@@ -1,4 +1,4 @@
 Method,Accuracy,Precision,Recall,F1,Avg Verification Calls,Mean Latency (ms),Median Latency (ms),p95 Latency (ms),Abstained Claims,Coverage (%)
-Single-Detector,0.685,0.7148,0.6624,0.6876,1.0,59.27,59.12,63.1,0,100.0
-Fixed-Multi-Check,0.655,0.8129,0.4427,0.5732,3.0,59.36,59.25,64.01,0,100.0
-Adaptive-Verification,0.6968,0.805,0.5552,0.6571,2.45,59.23,59.14,63.62,46,92.33
+Single-Detector,0.6933,0.7083,0.7038,0.7061,1.0,13.48,12.96,18.27,0,100.0
+Fixed-Multi-Check,0.6733,0.8352,0.4682,0.6,3.0,13.62,13.23,17.91,0,100.0
+Adaptive-Verification,0.6885,0.7736,0.5714,0.6573,2.44,13.45,13.05,17.68,51,91.5

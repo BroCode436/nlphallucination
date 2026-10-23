@@ -1,0 +1,1 @@
+Hard call budgets; actual calls and estimated token costs are in the tables. Joint effects use generated outcomes, not added singleton gains.

@@ -15,6 +15,7 @@ Guaranteed Scientific Integrity:
 5. Per-Example Prediction Logging:
    - Persists granular claim-level predictions to results/predictions/.
 """
+from typing import Any as _DocAny
 
 import os
 import sys
@@ -41,6 +42,8 @@ from verification import (
     compare_verification_policies
 )
 from correction import EvidenceGuidedCorrector, evaluate_correction_pipeline
+from reliability import probability_metrics, source_bootstrap_f1
+from settings import load_config
 
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 
@@ -63,7 +66,29 @@ sns.set_theme(style="whitegrid", font="sans-serif")
 # ------------------------------------------------------------------------------
 # 1. LOAD TEST DATA & MODELS
 # ------------------------------------------------------------------------------
-def load_eval_resources(balanced_sample_size=1000, natural_eval_size=2000, seed=42):
+def load_eval_resources(balanced_sample_size: _DocAny=None, natural_eval_size: int=2000, seed: _DocAny=None) -> _DocAny:
+    """Load eval resources.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            balanced_sample_size: Balanced sample size supplied by the caller; see the operation and call sites for its concrete format.
+            natural_eval_size: Natural eval size supplied by the caller; see the operation and call sites for its concrete format.
+            seed: Pseudorandom seed controlling reproducible sampling or model initialization.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
+    config = load_config()
+    balanced_sample_size = config['evaluation']['balanced_sample_size'] if balanced_sample_size is None else balanced_sample_size
+    seed = config['random_seed'] if seed is None else seed
     test_path = os.path.join(PROCESSED_DIR, 'ragtruth_claims_test.csv')
     if not os.path.exists(test_path):
         raise FileNotFoundError(f"Test dataset not found at {test_path}. Run preprocessing.py first.")
@@ -119,7 +144,7 @@ def load_eval_resources(balanced_sample_size=1000, natural_eval_size=2000, seed=
         except Exception as e:
             raise RuntimeError(f"Failed to load required transformer checkpoint: {e}")
     else:
-        print("WARNING: Transformer detector checkpoint not found at {trans_dir}. Proceeding with baseline verification.")
+        print(f"WARNING: Transformer detector checkpoint not found at {trans_dir}. Proceeding with baseline verification.")
 
     # Verification Engine and Corrector
     engine = VerificationEngine(
@@ -136,7 +161,29 @@ def load_eval_resources(balanced_sample_size=1000, natural_eval_size=2000, seed=
 # ------------------------------------------------------------------------------
 # 2. EXPERIMENT 1: BASELINE VS TRANSFORMER ON NATURAL & BALANCED DISTRIBUTIONS
 # ------------------------------------------------------------------------------
-def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baseline_vec, trans_model, trans_tok):
+def run_model_benchmark(df_test_natural: _DocAny, df_test_balanced: _DocAny, baseline_clf: _DocAny, baseline_vec: _DocAny, trans_model: _DocAny, trans_tok: _DocAny) -> _DocAny:
+    """Run model benchmark.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            df_test_natural: DataFrame containing test natural records for this operation.
+            df_test_balanced: DataFrame containing test balanced records for this operation.
+            baseline_clf: Baseline clf supplied by the caller; see the operation and call sites for its concrete format.
+            baseline_vec: Baseline vec supplied by the caller; see the operation and call sites for its concrete format.
+            trans_model: Trans model supplied by the caller; see the operation and call sites for its concrete format.
+            trans_tok: Trans tok supplied by the caller; see the operation and call sites for its concrete format.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 1: MODEL BENCHMARK (NATURAL & BALANCED)")
     print("==================================================")
@@ -148,6 +195,7 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
         ('Natural Test Distribution (~8.7% Prev)', df_test_natural)
     ]
 
+    prediction_logs = []
     balanced_base_preds = None
     natural_base_preds = None
 
@@ -156,7 +204,7 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
 
         # 1. Baseline: TF-IDF + Logistic Regression
         X_test_text = ("Evidence: " + df_curr['evidence'] + " Claim: " + df_curr['claim']).tolist()
-        
+
         # Warmup and real wall-clock latency measurement
         t0 = time.perf_counter()
         X_test_vec = baseline_vec.transform(X_test_text)
@@ -171,6 +219,8 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
 
         records.append({
             'Evaluation Set': set_name,
+            **probability_metrics(y_true, base_probs),
+            **source_bootstrap_f1(y_true, base_preds, df_curr['source_id'].values),
             'Model': 'TF-IDF + Logistic Regression',
             'Samples': len(df_curr),
             'Accuracy': round(accuracy_score(y_true, base_preds), 4),
@@ -181,6 +231,10 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
             'Latency per Claim (ms)': round(lat_base, 3)
         })
 
+        logged = df_curr[['source_id', 'claim', 'evidence', 'label']].copy()
+        logged['evaluation_set'] = set_name
+        logged['baseline_probability'] = base_probs
+        logged['baseline_pred'] = base_preds
         # 2. DistilBERT Cross-Encoder
         if trans_model is not None and trans_tok is not None:
             trans_probs = []
@@ -188,23 +242,31 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
             trans_model.to(device)
 
             # Warmup
-            _ = trans_tok(["Evidence"], ["Claim"], return_tensors='pt')
+            warm = trans_tok(['Evidence'], ['Claim'], return_tensors='pt').to(device)
+            with torch.no_grad():
+                trans_model(**warm)
+            if device == 'cuda':
+                torch.cuda.synchronize()
             t0 = time.perf_counter()
             with torch.no_grad():
                 batch_size = 32
                 for i in range(0, len(df_curr), batch_size):
                     batch_ev = df_curr['evidence'].iloc[i:i+batch_size].tolist()
                     batch_cl = df_curr['claim'].iloc[i:i+batch_size].tolist()
-                    enc = trans_tok(batch_ev, batch_cl, truncation=True, max_length=128, padding=True, return_tensors='pt').to(device)
+                    enc = trans_tok(batch_ev, batch_cl, truncation=True, max_length=load_config()['transformer_model']['max_length'], padding=True, return_tensors='pt').to(device)
                     logits = trans_model(**enc).logits
                     probs = torch.softmax(logits, dim=1)[:, 1].cpu().numpy()
                     trans_probs.extend(probs)
             lat_trans = ((time.perf_counter() - t0) / len(df_curr)) * 1000.0  # per-claim ms
             trans_probs = np.array(trans_probs)
             trans_preds = (trans_probs >= 0.5).astype(int)
+            logged['transformer_probability'] = trans_probs
+            logged['transformer_pred'] = trans_preds
 
             records.append({
                 'Evaluation Set': set_name,
+                **probability_metrics(y_true, trans_probs),
+                **source_bootstrap_f1(y_true, trans_preds, df_curr['source_id'].values),
                 'Model': 'DistilBERT Cross-Encoder',
                 'Samples': len(df_curr),
                 'Accuracy': round(accuracy_score(y_true, trans_preds), 4),
@@ -215,9 +277,18 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
                 'Latency per Claim (ms)': round(lat_trans, 3)
             })
 
+        prediction_logs.append(logged)
+
+    pd.concat(prediction_logs, ignore_index=True).to_csv(os.path.join(PREDICTIONS_DIR, 'all_model_predictions.csv'), index=False)
     df_models = pd.DataFrame(records)
     print(df_models.to_string(index=False))
     df_models.to_csv(os.path.join(TABLES_DIR, 'model_benchmark_test.csv'), index=False)
+
+    # Save per-example prediction records for auditability
+    df_preds_balanced = df_test_balanced[['source_id', 'claim', 'evidence', 'label']].copy()
+    if balanced_base_preds is not None:
+        df_preds_balanced['baseline_pred'] = balanced_base_preds
+    df_preds_balanced.to_csv(os.path.join(PREDICTIONS_DIR, 'model_benchmark_predictions.csv'), index=False)
 
     # Plot Confusion Matrix on Balanced Set strictly with matching balanced predictions
     cm = confusion_matrix(df_test_balanced['label'].values, balanced_base_preds)
@@ -238,7 +309,25 @@ def run_model_benchmark(df_test_natural, df_test_balanced, baseline_clf, baselin
 # ------------------------------------------------------------------------------
 # 3. EXPERIMENT 2: HALLUCINATION SUBTYPE ANALYSIS
 # ------------------------------------------------------------------------------
-def run_hallucination_type_analysis(df_test, engine):
+def run_hallucination_type_analysis(df_test: _DocAny, engine: _DocAny) -> _DocAny:
+    """Run hallucination type analysis.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            df_test: Held-out test DataFrame used only for evaluation.
+            engine: Verification engine containing the selected detector and heuristic checks.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 2: HALLUCINATION SUBTYPE ANALYSIS")
     print("==================================================")
@@ -293,7 +382,25 @@ def run_hallucination_type_analysis(df_test, engine):
 # ------------------------------------------------------------------------------
 # 4. EXPERIMENT 3: NATURAL EVIDENCE QUALITY SENSITIVITY
 # ------------------------------------------------------------------------------
-def run_evidence_quality_experiment(engine, df_test):
+def run_evidence_quality_experiment(engine: _DocAny, df_test: _DocAny) -> _DocAny:
+    """Run evidence quality experiment.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            engine: Verification engine containing the selected detector and heuristic checks.
+            df_test: Held-out test DataFrame used only for evaluation.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 3: NATURAL EVIDENCE QUALITY SENSITIVITY")
     print("==================================================")
@@ -369,7 +476,26 @@ def run_evidence_quality_experiment(engine, df_test):
 # ------------------------------------------------------------------------------
 # 5. EXPERIMENT 4: FIXED VS ADAPTIVE VERIFICATION BENCHMARK
 # ------------------------------------------------------------------------------
-def run_fixed_vs_adaptive_benchmark(engine, df_test, max_samples=600):
+def run_fixed_vs_adaptive_benchmark(engine: _DocAny, df_test: _DocAny, max_samples: int=600) -> _DocAny:
+    """Run fixed vs adaptive benchmark.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            engine: Verification engine containing the selected detector and heuristic checks.
+            df_test: Held-out test DataFrame used only for evaluation.
+            max_samples: Maximum sampled records; record the actual evaluated count.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 4: FIXED VS ADAPTIVE VERIFICATION BENCHMARK")
     print("==================================================")
@@ -404,13 +530,36 @@ def run_fixed_vs_adaptive_benchmark(engine, df_test, max_samples=600):
 # ------------------------------------------------------------------------------
 # 6. EXPERIMENT 5: CORRECTION & POST-CORRECTION VERIFICATION
 # ------------------------------------------------------------------------------
-def run_correction_evaluation(corrector, df_test, max_eval=400):
+def run_correction_evaluation(corrector: _DocAny, df_test: _DocAny, max_eval: int=400) -> _DocAny:
+    """Run correction evaluation.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            corrector: Corrector supplied by the caller; see the operation and call sites for its concrete format.
+            df_test: Held-out test DataFrame used only for evaluation.
+            max_eval: Maximum evaluated records; small limits are smoke tests, not full benchmarks.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 5: CORRECTION & POST-VERIFICATION METRICS")
     print("==================================================")
 
     test_records = df_test[['claim', 'evidence', 'label']].to_dict('records')
+    t0_corr = time.perf_counter()
     corr_metrics, detailed_corr = evaluate_correction_pipeline(corrector, test_records, max_eval=max_eval)
+    corr_elapsed_ms = (time.perf_counter() - t0_corr) * 1000.0
+    corr_per_claim_ms = corr_elapsed_ms / max(min(max_eval, len(test_records)), 1)
+    corr_metrics['Mean Correction Latency (ms)'] = round(corr_per_claim_ms, 3)
 
     df_corr_metrics = pd.DataFrame([corr_metrics])
     print(df_corr_metrics.T.to_string(header=False))
@@ -422,11 +571,11 @@ def run_correction_evaluation(corrector, df_test, max_eval=400):
 
     # Plot Correction Metrics
     fig, ax = plt.subplots(figsize=(6.5, 4))
-    metric_names = ['Success (CSR)', 'Preservation (CCPR)', 'Induced Err (CIHR)', 'Unnecessary (UER)']
+    metric_names = ['Accepted (Proxy)', 'Preservation (CCPR)', 'Rejected Proposals', 'Unnecessary (UER)']
     metric_vals = [
         corr_metrics['Correction Success Rate (CSR %)'],
         corr_metrics['Correct Content Preservation Rate (CCPR %)'],
-        corr_metrics['Correction-Induced Hallucination Rate (CIHR %)'],
+        corr_metrics['Rejected Proposal Rate (%)'],
         corr_metrics['Unnecessary Edit Rate (UER %)']
     ]
     colors = ['#2ca02c', '#1f77b4', '#d62728', '#ff7f0e']
@@ -448,7 +597,26 @@ def run_correction_evaluation(corrector, df_test, max_eval=400):
 # ------------------------------------------------------------------------------
 # 7. EXPERIMENT 6: UNSEEN SOURCE GENERALIZATION
 # ------------------------------------------------------------------------------
-def run_unseen_question_experiment(engine, df_test, max_eval=300):
+def run_unseen_question_experiment(engine: _DocAny, df_test: _DocAny, max_eval: int=300) -> _DocAny:
+    """Run unseen question experiment.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            engine: Verification engine containing the selected detector and heuristic checks.
+            df_test: Held-out test DataFrame used only for evaluation.
+            max_eval: Maximum evaluated records; small limits are smoke tests, not full benchmarks.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 6: UNSEEN SOURCE GENERALIZATION")
     print("==================================================")
@@ -503,7 +671,26 @@ def run_unseen_question_experiment(engine, df_test, max_eval=300):
 # ------------------------------------------------------------------------------
 # 8. EXPERIMENT 7: GENUINE ABLATION STUDY (NO MULTIPLIERS, NO NONE-TO-ZERO)
 # ------------------------------------------------------------------------------
-def run_ablation_study(engine, df_test, max_eval=400):
+def run_ablation_study(engine: _DocAny, df_test: _DocAny, max_eval: int=400) -> _DocAny:
+    """Run ablation study.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            engine: Verification engine containing the selected detector and heuristic checks.
+            df_test: Held-out test DataFrame used only for evaluation.
+            max_eval: Maximum evaluated records; small limits are smoke tests, not full benchmarks.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("EXPERIMENT 7: GENUINE PIPELINE ABLATION STUDY")
     print("==================================================")
@@ -511,7 +698,27 @@ def run_ablation_study(engine, df_test, max_eval=400):
     df_eval = df_test.head(max_eval).copy()
     y_true = df_eval['label'].values
 
-    def compute_ablation_row(config_name, y_true_all, raw_preds, calls):
+    def compute_ablation_row(config_name: _DocAny, y_true_all: _DocAny, raw_preds: _DocAny, calls: _DocAny) -> _DocAny:
+        """Compute ablation row.
+
+        Measures detector, routing, correction, and ablation outcomes.
+
+        Learning notes — input/output contract:
+            Parameters:
+                config_name: Config name supplied by the caller; see the operation and call sites for its concrete format.
+                y_true_all: Y true all supplied by the caller; see the operation and call sites for its concrete format.
+                raw_preds: Raw preds supplied by the caller; see the operation and call sites for its concrete format.
+                calls: Calls supplied by the caller; see the operation and call sites for its concrete format.
+            Returns:
+                The value assembled by this function (score, table, records, or model as
+                described above). The Any type preserves the legacy dynamic interface;
+                inspect the documented call site for concrete tensor/table shapes.
+            Assumptions and failures:
+                Inputs must match the saved dataset/model schema. Missing files, invalid
+                fields, or incompatible checkpoints can raise errors; tests cover normal
+                and selected failure paths. Scores are not independent factual proof.
+
+        """
         covered = [(yt, p) for yt, p in zip(y_true_all, raw_preds) if p is not None]
         n_tot = len(y_true_all)
         n_cov = len(covered)
@@ -554,43 +761,32 @@ def run_ablation_study(engine, df_test, max_eval=400):
         fix_preds.append(res['prediction'])
         fix_calls.append(res['verification_calls'])
 
-    # 3. w/o Evidence Quality Awareness (Blind confidence routing)
-    no_eq_preds, no_eq_calls = [], []
-    for _, r in df_eval.iterrows():
-        p1, _ = engine.verify_check_1(r['evidence'], r['claim'])
-        if abs(p1 - 0.5) >= 0.30:
-            no_eq_preds.append(1 if p1 >= 0.5 else 0)
-            no_eq_calls.append(1)
-        else:
-            p2, _ = engine.verify_check_2(r['evidence'], r['claim'])
-            no_eq_preds.append(1 if (p1 + p2)/2.0 >= 0.5 else 0)
-            no_eq_calls.append(2)
+    # Disable one component while keeping all remaining thresholds and logic fixed.
+    def variant(**kwargs: _DocAny) -> _DocAny:
+        """Variant.
 
-    # 4. w/o Secondary Check (Stage 1 + Stage 3 only)
-    no_s2_preds, no_s2_calls = [], []
-    for _, r in df_eval.iterrows():
-        p1, _ = engine.verify_check_1(r['evidence'], r['claim'])
-        conf = abs(p1 - 0.5) * 2.0
-        if conf >= 0.80:
-            no_s2_preds.append(1 if p1 >= 0.5 else 0)
-            no_s2_calls.append(1)
-        else:
-            p3, _ = engine.verify_check_3(r['evidence'], r['claim'])
-            no_s2_preds.append(1 if (p1*0.6 + p3*0.4) >= 0.5 else 0)
-            no_s2_calls.append(2)
+        Measures detector, routing, correction, and ablation outcomes.
 
-    # 5. w/o Numerical / Date Conflict Rule Verifier (Stage 1 + Stage 2 only)
-    no_s3_preds, no_s3_calls = [], []
-    for _, r in df_eval.iterrows():
-        p1, _ = engine.verify_check_1(r['evidence'], r['claim'])
-        conf = abs(p1 - 0.5) * 2.0
-        if conf >= 0.80:
-            no_s3_preds.append(1 if p1 >= 0.5 else 0)
-            no_s3_calls.append(1)
-        else:
-            p2, _ = engine.verify_check_2(r['evidence'], r['claim'])
-            no_s3_preds.append(1 if (p1 + p2)/2.0 >= 0.5 else 0)
-            no_s3_calls.append(2)
+        Learning notes — input/output contract:
+            Parameters:
+                kwargs: Kwargs supplied by the caller; see the operation and call sites for its concrete format.
+            Returns:
+                The value assembled by this function (score, table, records, or model as
+                described above). The Any type preserves the legacy dynamic interface;
+                inspect the documented call site for concrete tensor/table shapes.
+            Assumptions and failures:
+                Inputs must match the saved dataset/model schema. Missing files, invalid
+                fields, or incompatible checkpoints can raise errors; tests cover normal
+                and selected failure paths. Scores are not independent factual proof.
+
+        """
+        records = [run_adaptive_verification(engine, r['evidence'], r['claim'], **kwargs)
+                   for _, r in df_eval.iterrows()]
+        return [r['prediction'] for r in records], [r['verification_calls'] for r in records]
+
+    no_eq_preds, no_eq_calls = variant(use_evidence_quality=False)
+    no_s2_preds, no_s2_calls = variant(disabled_stage=2)
+    no_s3_preds, no_s3_calls = variant(disabled_stage=3)
 
     # 6. Single Detector Baseline (Stage 1 only)
     base_only_preds, base_only_calls = [], []
@@ -632,14 +828,33 @@ def run_ablation_study(engine, df_test, max_eval=400):
 # ------------------------------------------------------------------------------
 # 9. MASTER EXPERIMENTAL COMPARISON TABLE
 # ------------------------------------------------------------------------------
-def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics):
+def generate_master_comparison_table(df_models: _DocAny, df_fixed_adaptive: _DocAny, corr_metrics: _DocAny) -> _DocAny:
+    """Generate master comparison table.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters:
+            df_models: DataFrame containing models records for this operation.
+            df_fixed_adaptive: DataFrame containing fixed adaptive records for this operation.
+            corr_metrics: Corr metrics supplied by the caller; see the operation and call sites for its concrete format.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("\n==================================================")
     print("MASTER EXPERIMENTAL COMPARISON TABLE (VERIFIED)")
     print("==================================================")
 
     # Filter to balanced test set rows for model comparisons
     base_row = df_models[(df_models['Model'].str.contains('Logistic')) & (df_models['Evaluation Set'].str.contains('Balanced'))].iloc[0]
-    
+
     trans_rows = df_models[(df_models['Model'].str.contains('DistilBERT')) & (df_models['Evaluation Set'].str.contains('Balanced'))]
     has_trans = len(trans_rows) > 0
 
@@ -655,7 +870,7 @@ def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics)
             'F1': base_row['F1'],
             'Mean Latency (ms)': base_row['Latency per Claim (ms)'],
             'Verification Calls': 1.0,
-            'CSR (%)': 'N/A',
+            'Accepted Correction (Proxy %)': 'N/A',
             'CIHR (%)': 'N/A',
             'CCPR (%)': 'N/A'
         }
@@ -671,7 +886,7 @@ def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics)
             'F1': trans_row['F1'],
             'Mean Latency (ms)': trans_row['Latency per Claim (ms)'],
             'Verification Calls': 1.0,
-            'CSR (%)': 'N/A',
+            'Accepted Correction (Proxy %)': 'N/A',
             'CIHR (%)': 'N/A',
             'CCPR (%)': 'N/A'
         })
@@ -685,7 +900,7 @@ def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics)
             'F1': fix_row['F1'],
             'Mean Latency (ms)': fix_row['Mean Latency (ms)'],
             'Verification Calls': fix_row['Avg Verification Calls'],
-            'CSR (%)': 'N/A',
+            'Accepted Correction (Proxy %)': 'N/A',
             'CIHR (%)': 'N/A',
             'CCPR (%)': 'N/A'
         },
@@ -697,7 +912,7 @@ def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics)
             'F1': adap_row['F1'],
             'Mean Latency (ms)': adap_row['Mean Latency (ms)'],
             'Verification Calls': adap_row['Avg Verification Calls'],
-            'CSR (%)': 'N/A',
+            'Accepted Correction (Proxy %)': 'N/A',
             'CIHR (%)': 'N/A',
             'CCPR (%)': 'N/A'
         },
@@ -707,10 +922,10 @@ def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics)
             'Precision': adap_row['Precision'],
             'Recall': adap_row['Recall'],
             'F1': adap_row['F1'],
-            'Mean Latency (ms)': round(adap_row['Mean Latency (ms)'] + 0.85, 2),
-            'Verification Calls': adap_row['Avg Verification Calls'],
-            'CSR (%)': corr_metrics['Correction Success Rate (CSR %)'],
-            'CIHR (%)': corr_metrics['Correction-Induced Hallucination Rate (CIHR %)'],
+            'Mean Latency (ms)': corr_metrics.get('Mean Correction Latency (ms)', 0.0),
+            'Verification Calls': corr_metrics['Mean Total Verification Calls'],
+            'Accepted Correction (Proxy %)': corr_metrics['Correction Success Rate (CSR %)'],
+            'CIHR (%)': 'Requires independent review',
             'CCPR (%)': corr_metrics['Correct Content Preservation Rate (CCPR %)']
         }
     ])
@@ -724,7 +939,23 @@ def generate_master_comparison_table(df_models, df_fixed_adaptive, corr_metrics)
 # ------------------------------------------------------------------------------
 # MAIN PIPELINE EXECUTION
 # ------------------------------------------------------------------------------
-def run_full_evaluation():
+def run_full_evaluation() -> _DocAny:
+    """Run full evaluation.
+
+    Measures detector, routing, correction, and ablation outcomes.
+
+    Learning notes — input/output contract:
+        Parameters: No explicit caller arguments beyond an instance/class if applicable.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     print("==================================================")
     print("STARTING RESEARCH-GRADE EVALUATION & BENCHMARKING")
     print("==================================================")

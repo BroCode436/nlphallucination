@@ -1,0 +1,26 @@
+{
+  "legacy_weights": [
+    {
+      "path": "C:\\Users\\BroCode\\Documents\\nlphallucination\\nlphallucination\\results\\checkpoints\\best_transformer_detector\\model.safetensors",
+      "sha256": "a52c0ef051e291553ac94aedd348fa1c73907493d155b7bce4b8abcde45ae48f",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\BroCode\\Documents\\nlphallucination\\nlphallucination\\models\\correction_validity.joblib",
+      "sha256": "557adaca4d9369947e17cd8d3cbe21f98ebcd645b917c161629660bbe4ba4274",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\BroCode\\Documents\\Codex\\2026-10-22\\sea\\work\\chc_run\\reasoner\\weights\\models--google--flan-t5-small\\snapshots\\0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab\\model.safetensors",
+      "sha256": "495fa51e204676f1a857a9fc13c4c89f3f5ba9f480b898cebca02add25e6d749",
+      "unchanged": true
+    }
+  ],
+  "frozen_checkpoints_verified": 31,
+  "demo_javascript_syntax": "passed",
+  "browser_visual_qa": "unverified; automatic approval review blocks file protocol",
+  "paper_pdf_pages": 6,
+  "paper_pdf_visual_qa": "all six pages inspected; corrected control confidence intervals checked",
+  "word_visual_qa": "not delivered; LibreOffice missing",
+  "full_release_tests": "109 passed in 71.55 seconds"
+}

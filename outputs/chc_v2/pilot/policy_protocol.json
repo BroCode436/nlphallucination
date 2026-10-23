@@ -1,0 +1,19 @@
+{
+  "graph_recipe": "source_bridge_v1; declaration-only ablation",
+  "supervision": [
+    "richer",
+    "final_only"
+  ],
+  "training_seeds": [
+    42,
+    43,
+    44
+  ],
+  "complex_gate": {
+    "eligible_train_questions": 50,
+    "nonzero_train_targets": 20
+  },
+  "graph_recipe_sha256": "bce3ae2a197067bd00cabc21ecf8be9a158ce479c85d0d82edd7ad5d578f7484",
+  "selection_rule": "Validation only; final test has not been analyzed",
+  "cost_lambda": 0.01
+}

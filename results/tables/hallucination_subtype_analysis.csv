@@ -1,5 +1,5 @@
 Hallucination Subtype,Total Annotated Claims,Successfully Detected,Recall (Detection Rate)
-Evident Baseless Info,260,148,0.5692
-Subtle Baseless Info,62,39,0.629
-Evident Conflict,174,138,0.7931
-Subtle Conflict,4,1,0.25
+Evident Baseless Info,269,158,0.5874
+Subtle Baseless Info,62,45,0.7258
+Evident Conflict,166,142,0.8554
+Subtle Conflict,3,0,0.0

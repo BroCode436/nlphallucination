@@ -1,0 +1,7 @@
+# Data and model provenance notice
+
+HotpotQA-derived records use the official question/context/supporting-annotation source. Retain attribution to [Yang et al., 2018](https://aclanthology.org/D18-1259/) and the upstream [HotpotQA distribution](https://huggingface.co/datasets/hotpotqa/hotpot_qa), including CC BY-SA 4.0 obligations for derived material. The local cache and per-record retrieval URL/question ID/sentence indices preserve provenance. The release's transformations, automatic judgments and model outputs are additional annotations, not original dataset gold labels.
+
+RAGTruth detection uses the user's existing processed corpus, derived from [Niu et al., 2024](https://aclanthology.org/2024.acl-long.585/) and [the official repository](https://github.com/ParticleMedia/RAGTruth). The new source/results package includes score/ID audits rather than redistributing that full processed corpus.
+
+Frozen model sources: [Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct), [NLI DeBERTa xsmall](https://huggingface.co/cross-encoder/nli-deberta-v3-xsmall), and historical [FLAN-T5-small](https://huggingface.co/google/flan-t5-small). Model weights remain in the existing local caches; snapshot IDs and hashes identify the actual run. Follow each model's upstream license when redistributing weights. No private API keys are required by the implemented local inference path.

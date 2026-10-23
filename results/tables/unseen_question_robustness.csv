@@ -1,2 +1,2 @@
 Evaluation,Claims Tested,Accuracy,Precision,Recall,F1,Coverage (%),Abstention Rate (%),Mean Latency (ms),Median Latency (ms)
-Unseen Source Groups (Strictly Held-out),300,0.6985,0.7283,0.5403,0.6204,90.67,9.33,60.75,60.4
+Unseen Source Groups (Strictly Held-out),300,0.7246,0.75,0.6231,0.6807,92.0,8.0,13.32,13.1

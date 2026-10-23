@@ -1,0 +1,823 @@
+{
+  "mode": "recorded",
+  "question": "The End of the Innocence was a single by which former member of the Eagles?",
+  "prefix": [
+    {
+      "id": "C1",
+      "text": "The song 'The End of the Innocence' was not released in 1989.",
+      "depends_on": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    {
+      "id": "C2",
+      "text": "Don Henley was formerly a member of the Eagles band.",
+      "depends_on": [],
+      "evidence_ids": [
+        "E2"
+      ]
+    }
+  ],
+  "pre_state": {
+    "question_id": "5ac141dd5542991316484a9b",
+    "question": "The End of the Innocence was a single by which former member of the Eagles?",
+    "claims": [
+      {
+        "id": "C1",
+        "text": "The song 'The End of the Innocence' was not released in 1989.",
+        "evidence_ids": [
+          "E1"
+        ],
+        "position": 0,
+        "is_final": false,
+        "risk": 0.08862696444797441,
+        "evidence_quality": 0.00038402946665883064,
+        "cost_tokens": 50,
+        "status": "contradicted"
+      },
+      {
+        "id": "C2",
+        "text": "Don Henley was formerly a member of the Eagles band.",
+        "evidence_ids": [
+          "E2"
+        ],
+        "position": 1,
+        "is_final": false,
+        "risk": 0.07288030119746011,
+        "evidence_quality": 0.9849913716316223,
+        "cost_tokens": 52,
+        "status": "supported"
+      },
+      {
+        "id": "final",
+        "text": "The End of the Innocence was a single by which former member of the Eagles?",
+        "evidence_ids": [],
+        "position": 2,
+        "is_final": true,
+        "risk": 0.5,
+        "evidence_quality": 0.0,
+        "cost_tokens": 1,
+        "status": "not_generated"
+      }
+    ],
+    "edges": [
+      {
+        "source": "C1",
+        "target": "final",
+        "kind": "possible_answer_relevance",
+        "confidence": 0.3,
+        "verified_causal": false
+      },
+      {
+        "source": "C2",
+        "target": "final",
+        "kind": "possible_answer_relevance",
+        "confidence": 0.3,
+        "verified_causal": false
+      },
+      {
+        "source": "C1",
+        "target": "C2",
+        "kind": "source_entity_bridge_hypothesis",
+        "confidence": 0.35,
+        "verified_causal": false,
+        "matched_entities": [
+          "Don Henley"
+        ],
+        "direction_basis": "observable claim order"
+      }
+    ],
+    "evidence": {
+      "E1": {
+        "title": "The End of the Innocence (song)",
+        "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+        "source": "HotpotQA annotated supporting context",
+        "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+        "question_id": "5ac141dd5542991316484a9b",
+        "sentence_indices": "0"
+      },
+      "E2": {
+        "title": "Don Henley",
+        "text": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+        "source": "HotpotQA annotated supporting context",
+        "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+        "question_id": "5ac141dd5542991316484a9b",
+        "sentence_indices": "0"
+      }
+    }
+  },
+  "before": {
+    "valid": true,
+    "correct": false,
+    "answer": "No",
+    "factual": {
+      "supported": 2,
+      "contradicted": 0,
+      "insufficient_evidence": 0,
+      "unreviewed": 0,
+      "downstream_claims": 2,
+      "evaluable_claims": 2,
+      "observed_propagation_rate": 0.0,
+      "label_origin": "automatic_nli_proxy; human_review_pending"
+    },
+    "repeated_original_error": false,
+    "generation": {
+      "raw": "{\n  \"claims\": [\n    {\n      \"id\": \"C3\",\n      \"text\": \"The song 'The End of the Innocence' was released in 1989.\",\n      \"depends_on\": [],\n      \"evidence_ids\": [\"E1\"]\n    },\n    {\n      \"id\": \"C4\",\n      \"text\": \"Don Henley was a founding member of the Eagles band.\",\n      \"depends_on\": [],\n      \"evidence_ids\": [\"E2\"]\n    }\n  ],\n  \"final_answer\": \"No\"\n}",
+      "trace": {
+        "claims": [
+          {
+            "id": "C3",
+            "text": "The song 'The End of the Innocence' was released in 1989.",
+            "depends_on": [],
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "id": "C4",
+            "text": "Don Henley was a founding member of the Eagles band.",
+            "depends_on": [],
+            "evidence_ids": [
+              "E2"
+            ]
+          }
+        ],
+        "final_answer": "No",
+        "question": "The End of the Innocence was a single by which former member of the Eagles?",
+        "atomicity": "Prompt-constrained short factual claims; independent human atomicity review pending"
+      },
+      "validation_error": null,
+      "truncated": false,
+      "output_tokens": 115,
+      "output_limit_reached": false,
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": null,
+      "snapshots": [
+        "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+      ],
+      "seed": 101,
+      "input_tokens": 644,
+      "latency_ms": 10800.38119998062,
+      "cache_key": "4b6f2dfe888cca165682a6b6b8cf7b7cc213b742f1a0df39162588e9754df209",
+      "cache_hit": false,
+      "device": "cuda:0",
+      "constrained_json": false,
+      "raw_validation_error": null,
+      "citation_alignment": [],
+      "artifact_origin": "raw_model_json",
+      "source_visibility": "full"
+    },
+    "judgments": [
+      {
+        "contradiction": 0.0007467303657904267,
+        "entailment": 0.9942913055419922,
+        "neutral": 0.004961914382874966,
+        "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+        "untruncated_tokens": 49,
+        "truncated": false,
+        "cache_key": "a425c7ee66395d743ccdf5eb84c11d24b0e50b887776a5f06b6fafd4589b426e",
+        "claim_id": "C3",
+        "text": "The song 'The End of the Innocence' was released in 1989.",
+        "status": "supported",
+        "evidence_ids": [
+          "E1"
+        ],
+        "evidence": [
+          {
+            "title": "The End of the Innocence (song)",
+            "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E1",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.0007467303657904267,
+        "predicted_classification": "supported",
+        "uncertainty": 0.0057086944580078125,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending"
+      },
+      {
+        "contradiction": 0.00043444166658446193,
+        "entailment": 0.9925959706306458,
+        "neutral": 0.0069696055725216866,
+        "aligned_evidence": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+        "untruncated_tokens": 52,
+        "truncated": false,
+        "cache_key": "d552a33561d14f333061d62a9e7147212d0e77255fc0262994fbaf22c2b8083e",
+        "claim_id": "C4",
+        "text": "Don Henley was a founding member of the Eagles band.",
+        "status": "supported",
+        "evidence_ids": [
+          "E2"
+        ],
+        "evidence": [
+          {
+            "title": "Don Henley",
+            "text": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E2",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.00043444166658446193,
+        "predicted_classification": "supported",
+        "uncertainty": 0.007404029369354248,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending"
+      }
+    ],
+    "whole_claim_factual": {
+      "supported": 2,
+      "contradicted": 0,
+      "insufficient_evidence": 0,
+      "unreviewed": 0,
+      "downstream_claims": 2,
+      "evaluable_claims": 2,
+      "observed_propagation_rate": 0.0,
+      "label_origin": "automatic_nli_proxy; human_review_pending"
+    },
+    "atomic_judgments": [
+      {
+        "contradiction": 0.0007467303657904267,
+        "entailment": 0.9942913055419922,
+        "neutral": 0.004961914382874966,
+        "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+        "untruncated_tokens": 49,
+        "truncated": false,
+        "cache_key": "a425c7ee66395d743ccdf5eb84c11d24b0e50b887776a5f06b6fafd4589b426e",
+        "claim_id": "C3_U1",
+        "text": "The song 'The End of the Innocence' was released in 1989.",
+        "status": "supported",
+        "evidence_ids": [
+          "E1"
+        ],
+        "evidence": [
+          {
+            "title": "The End of the Innocence (song)",
+            "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E1",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.0007467303657904267,
+        "predicted_classification": "supported",
+        "uncertainty": 0.0057086944580078125,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending",
+        "extraction": {
+          "text": "The song 'The End of the Innocence' was released in 1989.",
+          "original_text": "The song 'The End of the Innocence' was released in 1989.",
+          "extraction_rule": "unchanged_short_assertion",
+          "residual_compound_possible": false,
+          "human_atomicity_review": "pending",
+          "parent_claim_id": "C3"
+        }
+      },
+      {
+        "contradiction": 0.00043444166658446193,
+        "entailment": 0.9925959706306458,
+        "neutral": 0.0069696055725216866,
+        "aligned_evidence": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+        "untruncated_tokens": 52,
+        "truncated": false,
+        "cache_key": "d552a33561d14f333061d62a9e7147212d0e77255fc0262994fbaf22c2b8083e",
+        "claim_id": "C4_U1",
+        "text": "Don Henley was a founding member of the Eagles band.",
+        "status": "supported",
+        "evidence_ids": [
+          "E2"
+        ],
+        "evidence": [
+          {
+            "title": "Don Henley",
+            "text": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E2",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.00043444166658446193,
+        "predicted_classification": "supported",
+        "uncertainty": 0.007404029369354248,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending",
+        "extraction": {
+          "text": "Don Henley was a founding member of the Eagles band.",
+          "original_text": "Don Henley was a founding member of the Eagles band.",
+          "extraction_rule": "unchanged_short_assertion",
+          "residual_compound_possible": false,
+          "human_atomicity_review": "pending",
+          "parent_claim_id": "C4"
+        }
+      }
+    ],
+    "factual_unit_scope": "Conservative rule-extracted units; residual compounds flagged; automatic NLI proxy"
+  },
+  "after": {
+    "valid": true,
+    "correct": false,
+    "answer": "yes",
+    "factual": {
+      "supported": 2,
+      "contradicted": 0,
+      "insufficient_evidence": 0,
+      "unreviewed": 0,
+      "downstream_claims": 2,
+      "evaluable_claims": 2,
+      "observed_propagation_rate": 0.0,
+      "label_origin": "automatic_nli_proxy; human_review_pending"
+    },
+    "repeated_original_error": false,
+    "generation": {
+      "raw": "{\n  \"claims\": [\n    {\n      \"id\": \"C3\",\n      \"text\": \"Don Henley was a member of the Eagles.\",\n      \"depends_on\": [],\n      \"evidence_ids\": []\n    },\n    {\n      \"id\": \"C4\",\n      \"text\": \"The song \\\"The End of the Innocence\\\" was released on Don Henley's third solo album.\",\n      \"depends_on\": [],\n      \"evidence_ids\": []\n    }\n  ],\n  \"final_answer\": \"yes\"\n}",
+      "trace": {
+        "claims": [
+          {
+            "id": "C3",
+            "text": "Don Henley was a member of the Eagles.",
+            "depends_on": [],
+            "evidence_ids": [
+              "E2"
+            ]
+          },
+          {
+            "id": "C4",
+            "text": "The song \"The End of the Innocence\" was released on Don Henley's third solo album.",
+            "depends_on": [],
+            "evidence_ids": [
+              "E1"
+            ]
+          }
+        ],
+        "final_answer": "yes",
+        "question": "The End of the Innocence was a single by which former member of the Eagles?",
+        "atomicity": "Prompt-constrained short factual claims; independent human atomicity review pending"
+      },
+      "validation_error": null,
+      "truncated": false,
+      "output_tokens": 109,
+      "output_limit_reached": false,
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": null,
+      "snapshots": [
+        "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+      ],
+      "seed": 101,
+      "input_tokens": 660,
+      "latency_ms": 10741.043900023215,
+      "cache_key": "ee3b165d8693e8e9f08624d20110ecd0e642a0f7d7b7e037610e3e3536e6dc14",
+      "cache_hit": false,
+      "device": "cuda:0",
+      "constrained_json": false,
+      "raw_validation_error": "Every factual claim needs an available evidence ID",
+      "citation_alignment": [
+        {
+          "claim_id": "C3",
+          "assigned_evidence_id": "E2",
+          "entailment_score": 0.9919414520263672,
+          "contradiction_score": 0.0005628150538541377,
+          "retrieved_source_relation": "supported_candidate",
+          "origin": "automatic_source_alignment; not model citation or human validation"
+        },
+        {
+          "claim_id": "C4",
+          "assigned_evidence_id": "E1",
+          "entailment_score": 0.9931222796440125,
+          "contradiction_score": 0.0006948652444407344,
+          "retrieved_source_relation": "supported_candidate",
+          "origin": "automatic_source_alignment; not model citation or human validation"
+        }
+      ],
+      "artifact_origin": "explicit_citation_aligned_model_claims",
+      "source_visibility": "full"
+    },
+    "judgments": [
+      {
+        "contradiction": 0.0005628150538541377,
+        "entailment": 0.9919414520263672,
+        "neutral": 0.007495718542486429,
+        "aligned_evidence": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+        "untruncated_tokens": 50,
+        "truncated": false,
+        "cache_key": "8be64b86f68a01d49f8b59dd5605c65c61d86d52a7349d75a0813691fd3f0aa7",
+        "claim_id": "C3",
+        "text": "Don Henley was a member of the Eagles.",
+        "status": "supported",
+        "evidence_ids": [
+          "E2"
+        ],
+        "evidence": [
+          {
+            "title": "Don Henley",
+            "text": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E2",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.0005628150538541377,
+        "predicted_classification": "supported",
+        "uncertainty": 0.008058547973632812,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending"
+      },
+      {
+        "contradiction": 0.0006948652444407344,
+        "entailment": 0.9931222796440125,
+        "neutral": 0.006182882934808731,
+        "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+        "untruncated_tokens": 55,
+        "truncated": false,
+        "cache_key": "1d70cb719abbe816f93206af955c72a19d3bb78dce7fdbf7209ab892d4987cef",
+        "claim_id": "C4",
+        "text": "The song \"The End of the Innocence\" was released on Don Henley's third solo album.",
+        "status": "supported",
+        "evidence_ids": [
+          "E1"
+        ],
+        "evidence": [
+          {
+            "title": "The End of the Innocence (song)",
+            "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E1",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.0006948652444407344,
+        "predicted_classification": "supported",
+        "uncertainty": 0.006877720355987549,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending"
+      }
+    ],
+    "whole_claim_factual": {
+      "supported": 2,
+      "contradicted": 0,
+      "insufficient_evidence": 0,
+      "unreviewed": 0,
+      "downstream_claims": 2,
+      "evaluable_claims": 2,
+      "observed_propagation_rate": 0.0,
+      "label_origin": "automatic_nli_proxy; human_review_pending"
+    },
+    "atomic_judgments": [
+      {
+        "contradiction": 0.0005628150538541377,
+        "entailment": 0.9919414520263672,
+        "neutral": 0.007495718542486429,
+        "aligned_evidence": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+        "untruncated_tokens": 50,
+        "truncated": false,
+        "cache_key": "8be64b86f68a01d49f8b59dd5605c65c61d86d52a7349d75a0813691fd3f0aa7",
+        "claim_id": "C3_U1",
+        "text": "Don Henley was a member of the Eagles.",
+        "status": "supported",
+        "evidence_ids": [
+          "E2"
+        ],
+        "evidence": [
+          {
+            "title": "Don Henley",
+            "text": "Donald Hugh Henley (born July 22, 1947) is an American singer-songwriter, producer, and drummer, best known as a founding member of the Eagles before launching a successful solo career.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E2",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.0005628150538541377,
+        "predicted_classification": "supported",
+        "uncertainty": 0.008058547973632812,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending",
+        "extraction": {
+          "text": "Don Henley was a member of the Eagles.",
+          "original_text": "Don Henley was a member of the Eagles.",
+          "extraction_rule": "unchanged_short_assertion",
+          "residual_compound_possible": false,
+          "human_atomicity_review": "pending",
+          "parent_claim_id": "C3"
+        }
+      },
+      {
+        "contradiction": 0.0006948652444407344,
+        "entailment": 0.9931222796440125,
+        "neutral": 0.006182882934808731,
+        "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+        "untruncated_tokens": 55,
+        "truncated": false,
+        "cache_key": "1d70cb719abbe816f93206af955c72a19d3bb78dce7fdbf7209ab892d4987cef",
+        "claim_id": "C4_U1",
+        "text": "The song \"The End of the Innocence\" was released on Don Henley's third solo album.",
+        "status": "supported",
+        "evidence_ids": [
+          "E1"
+        ],
+        "evidence": [
+          {
+            "title": "The End of the Innocence (song)",
+            "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+            "source": "HotpotQA annotated supporting context",
+            "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+            "question_id": "5ac141dd5542991316484a9b",
+            "sentence_indices": "0",
+            "id": "E1",
+            "dataset_row_index": 200
+          }
+        ],
+        "hallucination_score": 0.0006948652444407344,
+        "predicted_classification": "supported",
+        "uncertainty": 0.006877720355987549,
+        "calibrated_probability": null,
+        "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+        "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+        "judgment_origin": "automatic_nli_proxy",
+        "human_review": "pending",
+        "extraction": {
+          "text": "The song \"The End of the Innocence\" was released on Don Henley's third solo album.",
+          "original_text": "The song \"The End of the Innocence\" was released on Don Henley's third solo album.",
+          "extraction_rule": "unchanged_short_assertion",
+          "residual_compound_possible": false,
+          "human_atomicity_review": "pending",
+          "parent_claim_id": "C4"
+        }
+      }
+    ],
+    "factual_unit_scope": "Conservative rule-extracted units; residual compounds flagged; automatic NLI proxy"
+  },
+  "selected": "C1",
+  "policy": "tabular_richer_all",
+  "action": {
+    "claim_id": "C1",
+    "question": "The End of the Innocence was a single by which former member of the Eagles?",
+    "original": "The song 'The End of the Innocence' was not released in 1989.",
+    "proposal": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+    "replacement": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+    "accepted": true,
+    "status": "corrected",
+    "rejection_reasons": [],
+    "missing_anchors": [],
+    "lexical_result": {
+      "original": "The song 'The End of the Innocence' was not released in 1989.",
+      "final_claim": "The song 'The End of the Innocence' was not released in 1989.",
+      "status": "needs_review",
+      "selected": null,
+      "candidates": [
+        {
+          "accepted": false,
+          "support_score": 0.0009693149747762016,
+          "preservation_score": 0.9997932106155779,
+          "thresholds": {
+            "support": 0.95,
+            "preservation": 0.95
+          },
+          "reasons": [
+            "Proposal lacks sufficient learned evidence support",
+            "Proposal and evidence differ in negation; requires semantic review"
+          ],
+          "status": "needs_review",
+          "final_claim": "The song 'The End of the Innocence' was not released in 1989.",
+          "evidence_excerpt": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+          "model_version": "1.0.0",
+          "assessment_basis": "Trained lexical verifier; not independent factual proof",
+          "proposal": "The song 'The End of the Innocence' was not released in 1989."
+        },
+        {
+          "accepted": false,
+          "support_score": 0.9998241151406235,
+          "preservation_score": 0.9997932106155779,
+          "thresholds": {
+            "support": 0.95,
+            "preservation": 0.95
+          },
+          "reasons": [
+            "Negation changed; requires semantic review"
+          ],
+          "status": "needs_review",
+          "final_claim": "The song 'The End of the Innocence' was not released in 1989.",
+          "evidence_excerpt": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+          "model_version": "1.0.0",
+          "assessment_basis": "Trained lexical verifier; not independent factual proof",
+          "proposal": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989."
+        }
+      ]
+    },
+    "resolved_lexical_semantic_deferral": true,
+    "original_judgment": {
+      "contradiction": 0.9988353848457336,
+      "entailment": 0.00038402946665883064,
+      "neutral": 0.0007806054200045764,
+      "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+      "untruncated_tokens": 50,
+      "truncated": false,
+      "cache_key": "05dbc93c665d223490ac0ad44190f402415e68c3e88ad4b155dc1c547d8c72aa",
+      "claim_id": "C1",
+      "text": "The song 'The End of the Innocence' was not released in 1989.",
+      "status": "contradicted",
+      "evidence_ids": [
+        "E1"
+      ],
+      "evidence": [
+        {
+          "title": "The End of the Innocence (song)",
+          "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+          "source": "HotpotQA annotated supporting context",
+          "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+          "question_id": "5ac141dd5542991316484a9b",
+          "sentence_indices": "0",
+          "id": "E1"
+        }
+      ],
+      "hallucination_score": 0.9988353848457336,
+      "predicted_classification": "contradicted",
+      "uncertainty": 0.0011646151542663574,
+      "calibrated_probability": null,
+      "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+      "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+      "judgment_origin": "automatic_nli_proxy",
+      "human_review": "pending"
+    },
+    "proposed_judgment": {
+      "contradiction": 0.002039333339780569,
+      "entailment": 0.9890151619911194,
+      "neutral": 0.008945485576987267,
+      "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+      "untruncated_tokens": 67,
+      "truncated": false,
+      "cache_key": "1099a1f769254b1b26894e957533a962a0ae13f754c52039da27e9ffd3ab21b0",
+      "claim_id": "C1",
+      "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+      "status": "supported",
+      "evidence_ids": [
+        "E1"
+      ],
+      "evidence": [
+        {
+          "title": "The End of the Innocence (song)",
+          "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+          "source": "HotpotQA annotated supporting context",
+          "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+          "question_id": "5ac141dd5542991316484a9b",
+          "sentence_indices": "0",
+          "id": "E1"
+        }
+      ],
+      "hallucination_score": 0.002039333339780569,
+      "predicted_classification": "supported",
+      "uncertainty": 0.010984838008880615,
+      "calibrated_probability": null,
+      "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+      "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+      "judgment_origin": "automatic_nli_proxy",
+      "human_review": "pending"
+    },
+    "evidence_ids": [
+      "E1"
+    ],
+    "evidence": [
+      {
+        "title": "The End of the Innocence (song)",
+        "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+        "source": "HotpotQA annotated supporting context",
+        "url": "https://datasets-server.huggingface.co/rows?dataset=hotpotqa%2Fhotpot_qa&config=distractor&split=train&offset=200&length=100",
+        "question_id": "5ac141dd5542991316484a9b",
+        "sentence_indices": "0",
+        "id": "E1"
+      }
+    ],
+    "calls": 1,
+    "estimated_tokens": 64,
+    "latency_ms": 297.6159999961965,
+    "human_review": "pending",
+    "harmful_repair_proxy": false
+  },
+  "injection": {
+    "node_id": "C1",
+    "type": "negation_error",
+    "original": "The song 'The End of the Innocence' was released in 1989.",
+    "modified": "The song 'The End of the Innocence' was not released in 1989.",
+    "evidence_ids": [
+      "E1"
+    ],
+    "justification": "Negates an explicit affirmative assertion; requires contradiction evidence",
+    "validity": "automatic_contradiction_candidate",
+    "human_review": "pending",
+    "original_judgment": {
+      "contradiction": 0.0007467303657904267,
+      "entailment": 0.9942913055419922,
+      "neutral": 0.004961914382874966,
+      "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+      "untruncated_tokens": 49,
+      "truncated": false,
+      "cache_key": "a425c7ee66395d743ccdf5eb84c11d24b0e50b887776a5f06b6fafd4589b426e",
+      "claim_id": "C1",
+      "text": "The song 'The End of the Innocence' was released in 1989.",
+      "status": "supported",
+      "evidence_ids": [
+        "E1"
+      ],
+      "evidence": [
+        {
+          "title": "The End of the Innocence (song)",
+          "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+          "source": "HotpotQA annotated supporting context",
+          "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+          "question_id": "5ac141dd5542991316484a9b",
+          "sentence_indices": "0",
+          "id": "E1"
+        }
+      ],
+      "hallucination_score": 0.0007467303657904267,
+      "predicted_classification": "supported",
+      "uncertainty": 0.0057086944580078125,
+      "calibrated_probability": null,
+      "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+      "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+      "judgment_origin": "automatic_nli_proxy",
+      "human_review": "pending"
+    },
+    "mutation_judgment": {
+      "contradiction": 0.9988353848457336,
+      "entailment": 0.00038402946665883064,
+      "neutral": 0.0007806054200045764,
+      "aligned_evidence": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+      "untruncated_tokens": 50,
+      "truncated": false,
+      "cache_key": "05dbc93c665d223490ac0ad44190f402415e68c3e88ad4b155dc1c547d8c72aa",
+      "claim_id": "C1",
+      "text": "The song 'The End of the Innocence' was not released in 1989.",
+      "status": "contradicted",
+      "evidence_ids": [
+        "E1"
+      ],
+      "evidence": [
+        {
+          "title": "The End of the Innocence (song)",
+          "text": "\"The End of the Innocence\" is the lead single and title track from Don Henley's third solo studio album of the same name, released in 1989.",
+          "source": "HotpotQA annotated supporting context",
+          "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa",
+          "question_id": "5ac141dd5542991316484a9b",
+          "sentence_indices": "0",
+          "id": "E1"
+        }
+      ],
+      "hallucination_score": 0.9988353848457336,
+      "predicted_classification": "contradicted",
+      "uncertainty": 0.0011646151542663574,
+      "calibrated_probability": null,
+      "calibration_status": "Not calibrated for HotpotQA three-way factual status",
+      "model_id": "cross-encoder/nli-deberta-v3-xsmall",
+      "judgment_origin": "automatic_nli_proxy",
+      "human_review": "pending"
+    },
+    "primary_eligible": true,
+    "factual_mutation_gate": true
+  },
+  "evaluation_available": true,
+  "warning": "Controlled injection; automatic factual proxy labels; uncertain dependency edges; human review pending"
+}

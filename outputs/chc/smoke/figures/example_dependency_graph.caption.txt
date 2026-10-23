@@ -1,0 +1,1 @@
+Edges encode annotated relevance or explicit-name hypotheses, never observed causal truth.

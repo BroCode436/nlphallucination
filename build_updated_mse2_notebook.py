@@ -2,6 +2,7 @@
 build_updated_mse2_notebook.py
 Builds the research-grade notebooks/ragtruth_mse2.ipynb notebook reflecting all MSE-2 updates.
 """
+from typing import Any as _DocAny
 
 import json
 import os
@@ -11,7 +12,24 @@ NOTEBOOK_PATH = os.path.join(os.path.dirname(__file__), 'notebooks', 'ragtruth_m
 FIG_DIR = os.path.join(os.path.dirname(__file__), 'results', 'figures')
 
 
-def img_to_base64(fig_name):
+def img_to_base64(fig_name: _DocAny) -> _DocAny:
+    """Img to base64.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters:
+            fig_name: Fig name supplied by the caller; see the operation and call sites for its concrete format.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     path = os.path.join(FIG_DIR, fig_name)
     if os.path.exists(path):
         with open(path, 'rb') as f:
@@ -19,7 +37,24 @@ def img_to_base64(fig_name):
     return ""
 
 
-def make_md_cell(text):
+def make_md_cell(text: _DocAny) -> _DocAny:
+    """Make md cell.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters:
+            text: Input text to normalize, split, or transform as described above.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     return {
         "cell_type": "markdown",
         "metadata": {},
@@ -27,7 +62,26 @@ def make_md_cell(text):
     }
 
 
-def make_code_cell(code, stdout_text=None, png_base64=None):
+def make_code_cell(code: _DocAny, stdout_text: _DocAny=None, png_base64: _DocAny=None) -> _DocAny:
+    """Make code cell.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters:
+            code: Code supplied by the caller; see the operation and call sites for its concrete format.
+            stdout_text: Stdout text supplied by the caller; see the operation and call sites for its concrete format.
+            png_base64: Png base64 supplied by the caller; see the operation and call sites for its concrete format.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     outputs = []
     if stdout_text:
         outputs.append({
@@ -53,13 +107,29 @@ def make_code_cell(code, stdout_text=None, png_base64=None):
     }
 
 
-def build_notebook():
+def build_notebook() -> _DocAny:
+    """Build notebook.
+
+    This operation participates in the saved local NLP experiment workflow.
+
+    Learning notes — input/output contract:
+        Parameters: No explicit caller arguments beyond an instance/class if applicable.
+        Returns:
+            The value assembled by this function (score, table, records, or model as
+            described above). The Any type preserves the legacy dynamic interface;
+            inspect the documented call site for concrete tensor/table shapes.
+        Assumptions and failures:
+            Inputs must match the saved dataset/model schema. Missing files, invalid
+            fields, or incompatible checkpoints can raise errors; tests cover normal
+            and selected failure paths. Scores are not independent factual proof.
+
+    """
     cells = []
 
     # Title & Overview
     cells.append(make_md_cell("""# Adaptive Evidence-Guided Hallucination Detection and Correction with Post-Correction Verification for Large Language Models
-**Academic Milestone:** MSE-2 Comprehensive Research Implementation  
-**Dataset:** RAGTruth (ACL 2024 Benchmark, 17,790 responses, 132,706 sentence claims)  
+**Academic Milestone:** MSE-2 Comprehensive Research Implementation
+**Dataset:** RAGTruth (ACL 2024 Benchmark, 17,790 responses, 132,706 sentence claims)
 **Research Focus:** Zero Data Leakage, Multi-Stage Adaptive Routing, Wall-Clock Latency Profiling, Evidence-Guided Correction, and Post-Correction Re-verification.
 
 ---

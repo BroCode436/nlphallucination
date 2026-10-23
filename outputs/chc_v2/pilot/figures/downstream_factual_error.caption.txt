@@ -1,0 +1,1 @@
+Claim-weighted descriptive rate; unsupported claims excluded, not counted false. Policy confidence intervals use question aggregation separately.

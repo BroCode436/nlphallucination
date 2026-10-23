@@ -1,0 +1,44 @@
+{
+  "stage": "smoke",
+  "requested_questions": 50,
+  "questions_with_episodes": 50,
+  "episodes": 387,
+  "primary_error_conditions": 129,
+  "generation_seeds": [
+    101,
+    102,
+    103
+  ],
+  "training_seeds": [
+    42,
+    43,
+    44
+  ],
+  "new_real_generations_this_invocation": 627,
+  "cache_hits_this_invocation": 2772,
+  "test_policy_evaluations": 9594,
+  "cache_reuse_is_not_an_independent_sample": true,
+  "broader_downstream_labels_available": false,
+  "human_review_completed": false,
+  "detector_fallbacks": [],
+  "reasoner_fallbacks": [],
+  "model_identifier": "google/flan-t5-small",
+  "episode_sha256": "c185ecb709b0111b0d32eb7d0da05311d26fba7b6b61731dd26fd5cf84b408ca",
+  "after_hardware": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "memory_is_not_pooled": true,
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+        "vram_bytes": 6438780928,
+        "free_bytes": 4567597056,
+        "allocated_bytes": 594890240,
+        "peak_allocated_bytes": 630460416
+      }
+    ]
+  }
+}

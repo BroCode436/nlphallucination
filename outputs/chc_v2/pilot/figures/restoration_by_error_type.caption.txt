@@ -1,0 +1,1 @@
+Exact original-prefix restoration is an analysis-only sensitivity check, not a deployable learned correction.

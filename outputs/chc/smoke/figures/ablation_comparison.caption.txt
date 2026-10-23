@@ -1,0 +1,1 @@
+Final-answer-only loss; broader downstream claims are not annotated. Means across training seeds; oracle is analysis-only.

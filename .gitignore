@@ -33,3 +33,32 @@ notebooks/results/
 Thumbs.db
 .vscode/
 .idea/
+
+# CHC local dependencies and reproducible but large caches (never delete datasets).
+.chc_deps/
+outputs/chc/reasoner/
+outputs/chc/hotpot/
+outputs/chc/**/episodes.jsonl
+outputs/chc/**/detector_predictions.csv
+
+# Publication hygiene: local configuration, backups and generated development runs.
+chc.local.json
+*.bak
+**/*_backup/
+**/predictions_backup/
+**/tables_backup/
+**/legacy_documentation_backup/
+outputs/chc_v2/cache/
+outputs/chc_v2/source/
+outputs/chc_v2/docs/
+outputs/chc_v2/backend_dev*/
+outputs/chc_v2/debug*/
+outputs/chc_v2/pilot/models_interrupted_*/
+outputs/chc_v2/pilot/models/*.last.pt
+# V2 policy weights are small and published with their exact freeze manifest.
+!outputs/chc_v2/pilot/models/graph_richer_42.pt
+!outputs/chc_v2/pilot/models/graph_richer_43.pt
+!outputs/chc_v2/pilot/models/graph_richer_44.pt
+!outputs/chc_v2/pilot/models/graph_final_only_42.pt
+!outputs/chc_v2/pilot/models/graph_final_only_43.pt
+!outputs/chc_v2/pilot/models/graph_final_only_44.pt

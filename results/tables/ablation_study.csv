@@ -1,7 +1,7 @@
 Configuration,F1,Accuracy,Precision,Recall,Coverage (%),Abstention (%),Avg Calls
-Full Adaptive Verification Pipeline,0.6543,0.6973,0.797,0.555,92.5,7.5,2.44
-w/o Adaptive Routing (Fixed Verification),0.581,0.6575,0.7983,0.4567,100.0,0.0,3.0
-w/o Evidence-Quality Routing,0.6913,0.7075,0.7661,0.6298,100.0,0.0,1.76
-w/o Secondary Coverage Check (Stage 2),0.6798,0.715,0.8176,0.5817,100.0,0.0,1.92
-w/o Numerical/Date Conflict Verifier (Stage 3),0.6878,0.705,0.7647,0.625,100.0,0.0,1.92
-Single Detector Only (Stage 1 Baseline),0.6867,0.6875,0.7173,0.6587,100.0,0.0,1.0
+Full Adaptive Verification Pipeline,0.6607,0.6927,0.7762,0.5751,92.75,7.25,2.44
+w/o Adaptive Routing (Fixed Verification),0.6031,0.6775,0.8376,0.4712,100.0,0.0,3.0
+w/o Evidence-Quality Routing,0.7125,0.7175,0.7568,0.6731,100.0,0.0,1.66
+w/o Secondary Coverage Check (Stage 2),0.72,0.7375,0.8084,0.649,100.0,0.0,1.88
+w/o Numerical/Date Conflict Verifier (Stage 3),0.7092,0.715,0.7554,0.6683,100.0,0.0,1.88
+Single Detector Only (Stage 1 Baseline),0.7215,0.7125,0.7268,0.7163,100.0,0.0,1.0

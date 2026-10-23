@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "train": 32,
+    "validation": 8,
+    "test": 10
+  },
+  "overlaps": {
+    "train/validation": {
+      "question_ids": 0,
+      "document_titles": 0
+    },
+    "test/train": {
+      "question_ids": 0,
+      "document_titles": 0
+    },
+    "test/validation": {
+      "question_ids": 0,
+      "document_titles": 0
+    }
+  },
+  "sampling": "Bounded official prefixes; not population-random",
+  "template_overlap": "Natural questions; no independently annotated template IDs available"
+}

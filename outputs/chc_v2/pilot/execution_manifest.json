@@ -1,0 +1,12 @@
+{
+  "episodes": 97,
+  "process_elapsed_seconds": 3563.558196500002,
+  "new_generations_this_invocation": 304,
+  "cache_hits_this_invocation": 206,
+  "backend": "Qwen/Qwen2.5-1.5B-Instruct",
+  "snapshot_ids": [
+    "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  ],
+  "fallbacks": [],
+  "peak_allocated_gpu_bytes": 3798550528
+}

@@ -1,0 +1,1 @@
+Ten score bins; small samples and rare positives make bin fractions noisy. No calibration fitted on test.

@@ -3,6 +3,7 @@ test_pipeline.py
 Integration smoke test verifying the end-to-end pipeline components:
 Data Preprocessing -> Baseline/Verification Engine -> Adaptive Routing -> Correction -> Metric Reporting.
 """
+from typing import Any as _DocAny
 
 import unittest
 import sys
@@ -18,8 +19,27 @@ from correction import EvidenceGuidedCorrector, evaluate_correction_pipeline
 
 
 class TestIntegrationPipeline(unittest.TestCase):
+    """Group related TestIntegrationPipeline operations.
 
-    def test_end_to_end_mini_batch_flow(self):
+    Responsibility: Provide a cohesive model, interface, or regression-test fixture.
+    Constructor arguments and function contracts are documented on the methods. Instance attributes are assigned in __init__; tests construct fresh instances to avoid cross-test state.
+    """
+
+    def test_end_to_end_mini_batch_flow(self) -> None:
+        """Verify the end to end mini batch flow regression behavior.
+
+        This operation participates in the saved local NLP experiment workflow.
+
+        Learning notes — input/output contract:
+            Parameters: No explicit caller arguments beyond an instance/class if applicable.
+            Returns:
+                None; effects or assertions are performed directly.
+            Assumptions and failures:
+                Inputs must match the saved dataset/model schema. Missing files, invalid
+                fields, or incompatible checkpoints can raise errors; tests cover normal
+                and selected failure paths. Scores are not independent factual proof.
+
+        """
         # 1. Mini dataset
         mock_claims = [
             {'source_id': 's1', 'official_split': 'train', 'claim': 'Apollo 11 landed in 1969.', 'evidence': 'Apollo 11 landed on the Moon in July 1969.', 'label': 0},
@@ -44,7 +64,7 @@ class TestIntegrationPipeline(unittest.TestCase):
         corrector = EvidenceGuidedCorrector(verification_engine=engine)
         test_records = df_test[['claim', 'evidence', 'label']].to_dict('records')
         corr_metrics, detailed = evaluate_correction_pipeline(corrector, test_records)
-        
+
         self.assertIn('Correction Success Rate (CSR %)', corr_metrics)
         self.assertIn('Abstention Rate (AR %)', corr_metrics)
 

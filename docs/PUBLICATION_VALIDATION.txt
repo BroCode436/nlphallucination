@@ -1,0 +1,7 @@
+CHC GitHub publication validation
+23 October 2026
+109 passed in 57.27s
+Full suite: tests_chc tests test_model.py test_integration.py
+TemporaryDirectory redirected to the writable workspace; the earlier two failures were sandbox temporary-folder access errors.
+Staged whitespace check passed. All 31 policy checkpoint hashes verified. Launcher PowerShell syntax passed.
+Push authentication: blocked because Windows Credential Manager enumeration returned Access is denied.

@@ -1,0 +1,131 @@
+{
+  "utc_frozen": "2026-10-23T08:56:59.779527+00:00",
+  "checkpoints": [
+    {
+      "file": "graph_final_only_42.pt",
+      "sha256": "e9ba0c6061c3bb33b02b95671b7672caecfaf0a74b96ebd1e98b90bf483c0ce9"
+    },
+    {
+      "file": "graph_final_only_43.pt",
+      "sha256": "4876fdbb327deb6d63caf5f3de17cc56458f21b60f6fa9b215b70f262ff0d8e0"
+    },
+    {
+      "file": "graph_final_only_44.pt",
+      "sha256": "3867178d212bfc312cc1290b631b071f0f6130b0da92fe68b5ac6d062d82d9c6"
+    },
+    {
+      "file": "graph_richer_42.pt",
+      "sha256": "fabab466a2b7885a05354a76ca9465307bdfb9ed3acd87ad10f0e7f8000ed600"
+    },
+    {
+      "file": "graph_richer_43.pt",
+      "sha256": "b35c46dcc821b807e2d08ad854b5c9e5dd8eb9eedf2a8557b59f171213b44a43"
+    },
+    {
+      "file": "graph_richer_44.pt",
+      "sha256": "9ea267a207cbb81de8633f845e173bfdedbfc59a1f3a8219808cfa83bae3014c"
+    },
+    {
+      "file": "original_tabular_retrained_42.joblib",
+      "sha256": "35de6354b02b38bca354e16672e8937633cec542f68e26c37432e3a5b960cc91"
+    },
+    {
+      "file": "original_tabular_retrained_43.joblib",
+      "sha256": "0343de35cb71d85a20cfd390ddeefc97347e0ed0b56344165ca37341ad433c8c"
+    },
+    {
+      "file": "original_tabular_retrained_44.joblib",
+      "sha256": "cfd60a7eb3aedc27c47fbbdf2f214bef65c303c53d6875d8f5aa880eb38e85e1"
+    },
+    {
+      "file": "semantic_final_only.joblib",
+      "sha256": "f1a3edaee0038b8d38c02e771e8e9f0995f38ad7cbe237c7644c7c544aa4b50c"
+    },
+    {
+      "file": "semantic_richer.joblib",
+      "sha256": "ae95418fdc9d86750ca78d9f11ff969a8ddca1d3395f9315c9fe7ea0f926adf0"
+    },
+    {
+      "file": "semantic_richer_without_embeddings.joblib",
+      "sha256": "cf90254d4c24d15715e50643ec12df4831a004321e633c0f0e827137b620a8c4"
+    },
+    {
+      "file": "semantic_richer_without_graph.joblib",
+      "sha256": "8d08a5e4652f0bbdb51e33bcb87355c47ecba21108282aa2a93bbc22f85ae9be"
+    },
+    {
+      "file": "tabular_final_only_all_42.joblib",
+      "sha256": "401bf8e2f554416b63f3fa14bac5547f508aa8204dbd5d5e5b7ea5dda1c49f07"
+    },
+    {
+      "file": "tabular_final_only_all_43.joblib",
+      "sha256": "5fb518b71b547ce51232428611f15cb93d525b90ee469cca75cebb1adea142b8"
+    },
+    {
+      "file": "tabular_final_only_all_44.joblib",
+      "sha256": "28f2c06f58d231f7187a48c60979b2baad2435650d8b4537db91c575d199076c"
+    },
+    {
+      "file": "tabular_final_only_full_all_42.joblib",
+      "sha256": "6b9f82b1eeebf30f4f4a094eb78e235d2a3bc69e9fd251769ab86ef2278366cb"
+    },
+    {
+      "file": "tabular_final_only_full_all_43.joblib",
+      "sha256": "32e8a8d2876b337095bd0cc900deaef8c2d81cc46c866e3664673cedcd108658"
+    },
+    {
+      "file": "tabular_final_only_full_all_44.joblib",
+      "sha256": "ffb88c3d4d3b06e161232eaf8ff20a1477fd857ded560add3676f94348307cb5"
+    },
+    {
+      "file": "tabular_richer_all_42.joblib",
+      "sha256": "0988bacd7b33e78d6d46d37d7373690ea74f7357e2847150a6c5a74bdef802b9"
+    },
+    {
+      "file": "tabular_richer_all_43.joblib",
+      "sha256": "9b964a6d572d218d330fda05ad4b0a3265194ba784d339821fd9424d59070199"
+    },
+    {
+      "file": "tabular_richer_all_44.joblib",
+      "sha256": "a2227dccf910b83585c3032334402b864e845de5848775fd3a3086f9073da914"
+    },
+    {
+      "file": "tabular_richer_without_graph_42.joblib",
+      "sha256": "3bc7cb007c0a8027b78ca7b2082f32e8f74fe7ac7bfec356c36e4ddb0680f987"
+    },
+    {
+      "file": "tabular_richer_without_graph_43.joblib",
+      "sha256": "b9d31f27f62d5d9447c1d2992f7f525065165f1cb63d7dc4abbb1e0c0dc9c155"
+    },
+    {
+      "file": "tabular_richer_without_graph_44.joblib",
+      "sha256": "ceb0f2f393a0510936a32b2e0df562f6558f37d53adf27a062fd4e3d7f5a3a33"
+    },
+    {
+      "file": "tabular_richer_without_risk_42.joblib",
+      "sha256": "96640e1f4bb90ff8dd1661bcdf54624bd470d2101cbae05a5ac51b5d39b95c2e"
+    },
+    {
+      "file": "tabular_richer_without_risk_43.joblib",
+      "sha256": "76dfeb8ea13981f13c3f7c06ea89dcb50a9e956b1f675bdf66445f2fa047ed9a"
+    },
+    {
+      "file": "tabular_richer_without_risk_44.joblib",
+      "sha256": "18568a93066cc1bc2c0fc4c2e0e427957fb915ae2b36b6c098f1a29c80052536"
+    },
+    {
+      "file": "tabular_richer_without_source_bridges_42.joblib",
+      "sha256": "625d9e0058a410dd00f1d922514879128931b1b5c624cd443f845657946be7e6"
+    },
+    {
+      "file": "tabular_richer_without_source_bridges_43.joblib",
+      "sha256": "3ff33013a5079de4692189616438779afb86f4f08c063cac2a26187a42b2fae9"
+    },
+    {
+      "file": "tabular_richer_without_source_bridges_44.joblib",
+      "sha256": "3c87b098201495452e6075dd14026d19af9424243cde498f2d50e13eff0fb9da"
+    }
+  ],
+  "training_used_final_test_records": false,
+  "reason": "train_chc_v2.py filters train/validation before factual-unit processing; final test collection still running"
+}

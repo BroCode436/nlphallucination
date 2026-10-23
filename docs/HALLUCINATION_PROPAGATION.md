@@ -1,0 +1,21 @@
+# Observable hallucination propagation
+
+For each eligible clean prefix, the experiment records real continuations after the unchanged prefix, a controlled corrupted prefix, actual verification actions, and joint verification. The continuation consists of new explicit factual claims and a short final answer. The supplied sources and question are fixed across paired conditions. The sampling seed is matched. This is a controlled intervention on external text, not a causal intervention on hidden neural reasoning.
+
+Every new factual claim receives one of four statuses: supported, contradicted, insufficient evidence, or unreviewed. Statuses are automatic NLI proxies; they are not human truth. Entailment or contradiction must exceed 0.85. Other cases abstain. A referenced sentence from one document may not be enough to establish a multi-hop conclusion; that uncertainty must remain visible.
+
+Observed Hallucination Propagation Rate = contradicted downstream claims / (supported + contradicted downstream claims). The denominator excludes insufficient and unreviewed labels. If it is zero, the rate is null. We report total claims and evaluable coverage alongside the rate. A system cannot improve its measured error rate honestly merely by generating more unassessable claims; coverage and counts must be inspected together.
+
+Claims generated after the prefix are downstream in the observable sequence. Model-declared dependency paths are a separate, uncertain relationship. The analysis reports whether a new claim is connected to the injected prefix and its shortest declared depth. Depth plots describe these declarations; they do not prove causal edge validity. Corrupted-versus-clean differences in contradicted counts provide an observed amplification diagnostic. They should not be interpreted as independently identified per-edge causal effects.
+
+Exact normalized repetition is a conservative error-repetition indicator and misses paraphrases. Final-answer text change is distinct from final-answer deterioration. Spontaneous detection is not inferred merely because an answer is correct: that phenomenon remains unreviewed without explicit validated evidence. Exact original-prefix restoration is only a sensitivity diagnostic.
+
+The predeclared richer loss is L = 0.5 × observed downstream contradiction rate + 0.5 × final-answer error + 0.25 × harmful repair proxy. A harmful repair proxy is a previously supported prefix changed to an automatically contradicted claim; final-answer harm is also measured separately. Utility target is L(before) − L(after). Selection can subtract 0.01 per verification call. These weights are an equal-weight diagnostic design, not test-tuned or proof of novelty. Missing downstream denominators yield missing richer targets. The final-only ablation uses final-answer error alone on the same recorded interventions.
+
+All pilot outputs, including zero effects and malformed continuations, are retained. Complete-case evaluation discloses how many episodes remain. Human review, independent factual evaluation and representative naturally generated traces are necessary before a strong propagation-containment claim.
+
+The scoring unit is a conservative extracted factual unit. Shared-subject splitting copies only an explicit subject; ambiguous relative clauses and noun lists remain intact with a residual-compound flag. Original generated strings and extraction rules are preserved. Unit judgments are correlated, and statistical resampling uses questions rather than units.
+
+The test of richer versus final-only supervision uses the same measurable candidate mask. An additional full-coverage final-only baseline uses all available final-only labels. This prevents a difference in missing-label availability from being presented as the effect of the loss alone. Operational answer extraction is reported separately from valid-trace propagation scoring.
+
+An automatically flagged entity-binding error can be insufficiently evidenced rather than strictly contradicted under open-world semantics. Example diagnoses are provisional until review. Lower proxy contradiction rates and a locally supported repair do not by themselves establish improved real-world factual reliability.
